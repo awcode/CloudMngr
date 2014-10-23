@@ -79,7 +79,12 @@ class CloudMngr {
 		$this->region_id = $region_id;
 	}
 
-
+	function _error($message, $response=-1, $type="notice"){
+		//[TODO] Add full logging, display and verbosity options.
+		echo($message);
+		
+		return $response;
+	}
 
 }
 ?>

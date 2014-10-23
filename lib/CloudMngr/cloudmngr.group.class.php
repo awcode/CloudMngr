@@ -30,7 +30,7 @@ class CloudMngrGroup extends CloudMngr{
 
 	function getGroup($group_id=""){
 		$group_id = ($group_id!="") ? $group_id : $this->group_id;	
-		if(!$group_id) return -1;
+		if(!$group_id) return $this->_error("No Group ID");
 
 		if(!$this->group_arr){$this->getAllGroups();}	
 

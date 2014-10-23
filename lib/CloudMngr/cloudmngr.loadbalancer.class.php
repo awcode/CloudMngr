@@ -13,7 +13,7 @@ class CloudMngrLoadBalancer extends CloudMngr{
 
 	function loadByGroup($group_id=""){
 		$group_id = ($group_id!="") ? $group_id : $this->group_id;	
-		if(!$group_id) return -1;
+		if(!$group_id) return $this->_error("No Group ID");
 
 		$load_str = file_get_contents($this->base_path."/data/load/group-".$group_id);
 		$this->load_arr = json_decode($load_str, true);
@@ -27,7 +27,7 @@ class CloudMngrLoadBalancer extends CloudMngr{
 
 	function getLoadBalancer(){
 		$this->loadByGroup();
-		if(! is_array($this->load_arr['loadbalancer'])) return -1;
+		if(! is_array($this->load_arr['loadbalancer'])) return $this->_error("Invalid Load Balancer Array");
 		return $this->load_arr['loadbalancer'];
 
 	}
@@ -37,7 +37,7 @@ class CloudMngrLoadBalancer extends CloudMngr{
 		if(!$region_id) return -1;
 
 		$this->loadByGroup();
-		if(! is_array($this->load_arr['loadbalancer'])) return -1;
+		if(! is_array($this->load_arr['loadbalancer'])) return $this->_error("Invalid Load Balancer Array");
 
 		return $this->load_arr['loadbalancer']['regions'][$region_id];
 	}
@@ -45,7 +45,7 @@ class CloudMngrLoadBalancer extends CloudMngr{
 
 	function saveLoadBalancerConfig(){
 		$this->loadByGroup();
-		if(! is_array($this->load_arr['loadbalancer'])) return -1;
+		if(! is_array($this->load_arr['loadbalancer'])) return $this->_error("Invalid Load Balancer Array");
 
 		$group = $this->group()->getGroup($this->group_id);
 		foreach($group['regions'] as $index=>$id){
