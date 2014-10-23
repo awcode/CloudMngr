@@ -4,7 +4,7 @@
  * CloudMngrLoadBalancer Class
  */
 
-class CloudMngrLoadBalancer extends CloudMngr{
+class CloudMngrLoadBalancer extends CloudMngrBaseModule{
 	private $load_arr;
 
 	function __construct($group_id="", $region_id=""){

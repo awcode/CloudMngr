@@ -4,7 +4,7 @@
  * CloudMngrBaseModule Class
  */
 
-class CloudBaseModule extends CloudMngr{
+class CloudMngrBaseModule extends CloudMngr{
 	private $module_type;
 
 	function __construct($group_id="", $region_id=""){

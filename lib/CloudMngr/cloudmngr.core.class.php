@@ -26,11 +26,11 @@ class CloudMngr {
 		$this->base_path = str_replace('/lib/CloudMngr', '' ,dirname(__FILE__));
 
 		include($this->base_path."/data/config.php");
+		include_once($this->class_path . DIRECTORY_SEPARATOR . 'cloudmngr.basemodule.class.php');
 		$this->config = $config;
 		
 		if($group_id != ""){$this->setGroup($group_id);}
 		if($region_id != ""){$this->setRegion($region_id);}
-
 	}
 
 	function group(){
