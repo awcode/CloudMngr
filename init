@@ -1,0 +1,22 @@
+#!/bin/bash
+# Created by Mark Walker 2014
+# Init file to retrieve user inputted password on startup to decrypt security key
+pass=""
+pass_file="/dev/shm/.boss/.boss-unlock"
+
+if [ -f "$pass_file" ]
+then
+  pass=`cat $pass_file` 
+fi
+
+if [ -z "$pass" ]
+then
+  echo -n "Enter unlock pass"
+  read -s new_pass
+  echo $new_pass > $pass_file
+  echo -n "Initialised"
+else
+  echo -n "Already initialised"
+fi
+
+#[TODO] Decrypt datafolder using password

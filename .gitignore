@@ -1,0 +1,6 @@
+data/*
+!data/config/sample.php
+.*
+!.gitignore
+passwd
+Thumbs.db

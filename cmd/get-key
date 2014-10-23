@@ -1,0 +1,19 @@
+#!/bin/bash
+# Created by Mark Walker 2014
+# Init file to retrieve user inputted password on startup to decrypt security key
+pass_file="/dev/shm/.boss/.boss-unlock"
+key_file="/dev/shm/.boss/.boss-key"
+
+if [ -f "$pass_file" ]
+then
+  pass=`cat $pass_file` 
+else
+  echo "-1"
+fi
+
+if [ -z "$pass" ]
+then
+   echo "-1"
+else
+  gpg --passphrase $pass -d -q /home/boss/.boss-unlock
+fi
