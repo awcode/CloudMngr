@@ -30,7 +30,7 @@ foreach($group['regions'] as $index=>$id){
  		    </div>
                     <div class="row-fluid">
 
- 						<div class="span6">
+ 						<div class="span12">
                             <!-- block -->
                             <div class="block">
                                 <div class="navbar navbar-inner block-header">
@@ -40,53 +40,52 @@ foreach($group['regions'] as $index=>$id){
                                     </div>
                                 </div>
                                 <div class="block-content collapse in">
-                                    <table class="table table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Type</th>
-                                                <th>Active</th>
-                                                <th>Health</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Regions</td>
-                                                <td><?=count($regions_arr)." ".implode(", ",$regions_arr)?></td>
-                                                <td>100%</td>
-						                    </tr>
 						                	<?php
 						                	if($CloudMngr->arrFull($CloudMngr->active_modules)){
 												foreach($CloudMngr->active_modules as $module){
 													$ob = $CloudMngr->module($module);
-													?>
-						                               <tr>
-						                                    <td><?=$ob->getDisplayName()?></td>
-						                                    <td><?=$ob->getCountByGroup()?></td>
-						                                    <td><?=$ob->getHealthByGroup()?></td>
-						                                </tr>
-											
-													<?php
+													$type_row .= "<td>".$ob->getDisplayName()."</td>";
+						                            $region_row .= "<td>".$ob->getCountByGroup()."</td>";
+						                             $health_row .= "<td>".$ob->getHealthByGroup()."</td>";
 												}
 											} 
 						                	?>
-                                        </tbody>
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Type</th>
+                                                <td>Regions</td>
+                                                <?=$type_row?>
+                                            </tr>
+                                            <tr>
+                                                <th>Active</th>
+                                                <td><?=count($regions_arr)." ".implode(", ",$regions_arr)?></td>
+                                                <?=$region_row?>
+                                            </tr>
+                                            <tr>
+                                                <th>Health</th>
+                                                <td>100%</td>
+                                                <?=$health_row?>
+                                            </tr>
+                                        </thead>
                                     </table>
                                 </div>
                             </div>
                             <!-- /block -->
                         </div>
-<?php
-if($CloudMngr->arrFull($CloudMngr->active_modules)){
-	$cnt = 1;
-	foreach($CloudMngr->active_modules as $module){
-		$ob = $CloudMngr->module($module);
-		$ob->displayGroupPanel();
-		$cnt ++;
-		//if($cnt == 2){$cnt = 0; echo('</div><div class="row-fluid">');}
-	}
-} 
-?>
-
+                     </div>
+                     <div class="row-fluid">
+					<?php
+					if($CloudMngr->arrFull($CloudMngr->active_modules)){
+						$cnt = 1;
+						foreach($CloudMngr->active_modules as $module){
+							$ob = $CloudMngr->module($module);
+							$ob->displayGroupPanel();
+							$cnt ++;
+							if($cnt == 2){$cnt = 0; echo('</div><div class="row-fluid">');}
+						}
+					} 
+					?>
                     </div>
 <script src="assets/scripts.js"></script>
 
