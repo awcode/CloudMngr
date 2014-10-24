@@ -17,10 +17,10 @@ class CloudMngrBaseModule extends CloudMngr{
 	}
 	
 	public function getName(){
-		return $this->module_name();
+		return $this->module_name;
 	}
 	public function getDisplayName(){
-		return $this->module_display_name();
+		return $this->module_display_name;
 	}
 
 	public function getTotalCount(){
