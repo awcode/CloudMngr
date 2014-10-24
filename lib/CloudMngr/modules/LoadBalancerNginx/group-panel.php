@@ -45,6 +45,8 @@ foreach($group['regions'] as $index=>$id){
                                             </tr>
 <?php
 		}
+	}else{
+		echo("<tr><td colspan='5'>No ".$this->getName()." created</td></tr>");
 	}
 } 
 ?>
