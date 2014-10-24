@@ -64,7 +64,7 @@ foreach($group['regions'] as $index=>$id){
 	
 		$("#launch<?=$this->getName()?>Go").click(function(){
 			$.ajax({
-				"url": "/cmd.php?action=launch",
+				"url": "/cmd.php",
 				"data": {
 					"group": "<?=$this->group()->getId()?>",
 					"region": $("#launch<?=$this->getName()?>Region option:selected").val(),
@@ -74,13 +74,14 @@ foreach($group['regions'] as $index=>$id){
 				"method": "post",
 				"success": function(data){
 					alert(data);
+					window.location.reload();
 				}
 			});
 		});
 	});
 function terminate<?=$this->getName()?>Instance(insttype, id){
 	$.ajax({
-		"url": "/cmd.php?action=terminate",
+		"url": "/cmd.php",
 		"data": {
 			"group": "<?=$this->group()->getId()?>",
 			"region": $("#launch<?=$this->getName()?>Region option:selected").val(),
@@ -92,6 +93,7 @@ function terminate<?=$this->getName()?>Instance(insttype, id){
 		"method": "post",
 		"success": function(data){
 			alert(data);
+			window.location.reload();
 		}
 	});
 }

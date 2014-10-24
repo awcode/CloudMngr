@@ -94,7 +94,7 @@ class CloudMngrApachePHPServer extends CloudMngrBaseModule{
 				, array(
 					array('Key'=>'Name', 'Value'=>'Web Server'),
 					array('Key'=>'cloudMngrRole', 'Value'=>'web'),
-					array('Key'=>'cloudMngrModule', 'Value'=>'ApachePHPServer')
+					array('Key'=>'cloudMngrModule', 'Value'=>$this->module_name)
 				));
 
 				$instance_id = $instance['InstanceId'];

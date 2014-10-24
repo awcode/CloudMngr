@@ -82,7 +82,7 @@ if($CloudMngr->arrFull($CloudMngr->active_modules)){
 		$ob = $CloudMngr->module($module);
 		$ob->displayGroupPanel();
 		$cnt ++;
-		if($cnt == 2){$cnt = 0; echo('</div><div class="row-fluid">');}
+		//if($cnt == 2){$cnt = 0; echo('</div><div class="row-fluid">');}
 	}
 } 
 ?>
