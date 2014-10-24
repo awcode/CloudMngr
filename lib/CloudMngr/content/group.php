@@ -6,7 +6,6 @@ $regions = $CloudMngr->region()->getAllRegions();
 
 foreach($group['regions'] as $index=>$id){
 	$regions_arr[] = "<a href='/?page=region&id=".$id."'>".$regions[$id]['name']."</a> ";
-	$regions_select .= "<option value='".$id."'>".$regions[$id]['name']."</option>";
 }
 ?>
 

@@ -2,6 +2,10 @@
 $group = $this->group()->getGroup();
 $load = $this->getLoadBalancer();
 $regions = $this->region()->getAllRegions();
+foreach($group['regions'] as $index=>$id){
+	$regions_select .= "<option value='".$id."'>".$regions[$id]['name']."</option>";
+}
+
 ?>					<div class="span6">
                             <!-- block -->
                             <div class="block">
