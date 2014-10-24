@@ -57,7 +57,7 @@ class CloudMngr {
 	
 	protected function runHooks($onEvent, $forType, $include_all=true){
 		if($this->arrFull($this->_hooks[$onEvent][$forType])){
-			foreach($this->_hooks[$onEvent][$forType]){
+			foreach($this->_hooks[$onEvent][$forType] as $action){
 				$this->$action();
 			}
 		}
