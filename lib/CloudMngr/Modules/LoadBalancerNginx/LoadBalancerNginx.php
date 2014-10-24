@@ -4,11 +4,24 @@
  * CloudMngrLoadBalancer Class
  */
 
-class CloudMngrLoadBalancer extends CloudMngrBaseModule{
+class CloudMngrLoadBalancerNginx extends CloudMngrBaseModule{
 	private $load_arr;
-
+	protected $module_display_name = "Load Balancer (NginX)";
+	
 	function __construct($group_id="", $region_id=""){
 		parent::__construct($group_id, $region_id);
+	}
+
+	protected function _getTotalCount(){
+		return 0;
+	}
+	
+	protected function _getCountByRegion(){
+		return 0;
+	}
+	
+	protected function _getCountByGroup(){
+		return 0;
 	}
 
 	function loadByGroup($group_id=""){

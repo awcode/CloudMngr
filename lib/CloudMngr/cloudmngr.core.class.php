@@ -11,26 +11,56 @@ class CloudMngr {
 
 	private $_region = null;
 	private $_group = null;
-	private $_load = null;
 	private $_instance = null;
+	private $_modules = array();
 	
 	public $class_path;
 	public $base_path;
+	
+	public $active_modules;
 
 	protected $group_id;
 	protected $region_id;
 	protected $config;
+	protected $hooks = array();			//Individual Hooks array - add hooks to modules here.
+	protected $_hooks = array();		//Global hooks array, managed internally.
 
 	function __construct($group_id="", $region_id=""){
 		$this->class_path = dirname(__FILE__);
 		$this->base_path = str_replace('/lib/CloudMngr', '' ,dirname(__FILE__));
 
 		include($this->base_path."/data/config.php");
-		include_once($this->class_path . DIRECTORY_SEPARATOR . 'cloudmngr.basemodule.class.php');
 		$this->config = $config;
+		
+		include_once($this->class_path . DIRECTORY_SEPARATOR . 'cloudmngr.basemodule.class.php');
 		
 		if($group_id != ""){$this->setGroup($group_id);}
 		if($region_id != ""){$this->setRegion($region_id);}
+		$chk_modules = scandir($this->class_path.DIRECTORY_SEPARATOR."Modules");
+		if($this->arrFull($chk_modules)){
+			foreach($chk_modules as $module){
+				if ($this->class_path . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . $module.'.php') $this->active_modules[] = $module;
+			}
+		}
+	}
+
+	protected function setHooks(){
+		if($this->arrFull($this->hooks)){
+			foreach($this->hook as $hook){
+				$onEvent = $hook['onEvent';
+				$forType = $hook['forType'];
+				$action = $hook['action'];
+				if(!in_array($action, $this->_hooks[$onEvent][$forType]))	$this->_hooks[$onEvent][$forType][] = $action;
+			}
+		}
+	}
+	
+	protected function runHooks($onEvent, $forType, $include_all=true){
+		if($this->arrFull($this->_hooks[$onEvent][$forType])){
+			foreach($this->_hooks[$onEvent][$forType]){
+				$this->$action();
+			}
+		}
 	}
 
 	function group(){
@@ -48,15 +78,18 @@ class CloudMngr {
 		}
 		return $this->_region;
 	}
-
-	function loadBalancer(){
-		if($this->_load == null){
-			include_once($this->class_path . DIRECTORY_SEPARATOR . 'cloudmngr.loadbalancer.class.php');
-			$this->_load = new CloudMngrLoadBalancer($this->group_id, $this->region_id);
+	
+	function module($module){
+		if($this->_modules[$module] == null){
+			if (!$this->class_path . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . $module.'.php') return false;
+			include_once($this->class_path . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . $module.'.php');
+			$this->_modules[$module] = new $module($this->group_id, $this->region_id);
+			$this->_modules[$module]->module_name = $module;
 		}
 
-		return $this->_load;
+		return $this->_modules[$module];	
 	}
+
 
 	function instance(){
 		if($this->_instance == null){
@@ -85,6 +118,10 @@ class CloudMngr {
 		
 		return $response;
 	}
-
+	
+	function arrFull($array){
+		if(is_array($array) && count($array)) return true;
+		return false;
+	}
 }
 ?>

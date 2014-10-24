@@ -9,7 +9,7 @@ if($_POST['login_email'] == "markw" && $_POST['login_pass'] == "chang"){
 if($_SESSION['admin'] == ""){$page = "login";}
 elseif($_GET['page']){$page = $_GET['page'];}
 else{$page="main";}
-
+//[TODO] Clean path from XSS etc.
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,17 +26,18 @@ else{$page="main";}
     <![endif]-->
     <script src="vendors/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     <script src="vendors/jquery-1.9.1.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>  </head>
+    <script src="bootstrap/js/bootstrap.min.js"></script>  
+  </head>
   <body id="<?=$page?>">
 
 
 
 	<? 
-	if($_SESSION['admin'] != ""){include("content/temp-top.php");}
+	if($_SESSION['admin'] != ""){include("../template/temp-top.php");}
 
-	include("content/".$page.".php");
+	include($this->class_path."/content/".$page.".php");
 
-	if($_SESSION['admin'] != ""){include("content/temp-bott.php");}
+	if($_SESSION['admin'] != ""){include("../template/temp-bott.php");}
 
 	?>
 
