@@ -67,7 +67,9 @@ foreach($group['regions'] as $index=>$id){
 				"url": "/cmd.php?action=launch",
 				"data": {
 					"group": "<?=$this->group()->getId()?>",
-					"region": $("#launchLoadRegion option:selected").val()
+					"region": $("#launchLoadRegion option:selected").val(),
+					"module": "LoadBalanceNginx",
+					"action": "launch"
 				},
 				"method": "post",
 				"success": function(data){
@@ -83,7 +85,9 @@ function terminateInstance(insttype, id){
 			"group": "<?=$this->group()->getId()?>",
 			"region": $("#launchLoadRegion option:selected").val(),
 			"type": insttype,
-			"instance_id": id
+			"instance_id": id,
+			"module": "LoadBalanceNginx",
+			"action": "terminate"
 		},
 		"method": "post",
 		"success": function(data){
