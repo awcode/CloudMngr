@@ -51,7 +51,7 @@ class CloudMngrApachePHPServer extends CloudMngrBaseModule{
 		if(!$region_id) return -1;
 
 		$this->loadByGroup();
-		if(! is_array($this->data_arr[)) return array();
+		if(! is_array($this->data_arr)) return array();
 
 		return $this->data_arr['regions'][$region_id];
 	}
