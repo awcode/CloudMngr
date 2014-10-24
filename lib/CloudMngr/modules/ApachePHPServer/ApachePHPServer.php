@@ -35,12 +35,13 @@ class CloudMngrApachePHPServer extends CloudMngrBaseModule{
 	}
 
 	function writeArray(){
+		if(!is_dir($this->base_path. "/data/".$this->module_name)){mk_dir($this->base_path. "/data/".$this->module_name);}
 		file_put_contents($this->base_path. "/data/".$this->module_name."/group-".$this->group_id, json_encode($this->load_arr, 128));
 	}
 
 	function getWebServer(){
 		$this->loadByGroup();
-		if(! is_array($this->load_arr['webserver'])) return $this->_error("Invalid ".$this->module_display_name." Array");
+		if(! is_array($this->load_arr['webserver'])) return array();
 		return $this->load_arr['webserver'];
 
 	}
@@ -50,7 +51,7 @@ class CloudMngrApachePHPServer extends CloudMngrBaseModule{
 		if(!$region_id) return -1;
 
 		$this->loadByGroup();
-		if(! is_array($this->load_arr['webserver'])) return $this->_error("Invalid ".$this->module_display_name." Array");
+		if(! is_array($this->load_arr['webserver'])) return array();
 
 		return $this->load_arr['webserver']['regions'][$region_id];
 	}

@@ -40,7 +40,7 @@ class CloudMngrLoadBalancerNginx extends CloudMngrBaseModule{
 
 	function getLoadBalancer(){
 		$this->loadByGroup();
-		if(! is_array($this->load_arr['loadbalancer'])) return $this->_error("Invalid ".$this->module_display_name." Array");
+		if(! is_array($this->load_arr['loadbalancer'])) return array();
 		return $this->load_arr['loadbalancer'];
 
 	}
@@ -50,7 +50,7 @@ class CloudMngrLoadBalancerNginx extends CloudMngrBaseModule{
 		if(!$region_id) return -1;
 
 		$this->loadByGroup();
-		if(! is_array($this->load_arr['loadbalancer'])) return $this->_error("Invalid ".$this->module_display_name." Array");
+		if(! is_array($this->load_arr['loadbalancer'])) return array();
 
 		return $this->load_arr['loadbalancer']['regions'][$region_id];
 	}
