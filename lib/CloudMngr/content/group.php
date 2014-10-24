@@ -78,7 +78,7 @@ foreach($group['regions'] as $index=>$id){
                         </div>
 <?php
 if($CloudMngr->arrFull($CloudMngr->active_modules)){
-	foreach($CloudMngr->active_module as $module){
+	foreach($CloudMngr->active_modules as $module){
 		$CloudMngr->module($module)->displayGroupPanel();
 	}
 } 
