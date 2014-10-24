@@ -4,3 +4,4 @@ data/*
 !.gitignore
 passwd
 Thumbs.db
+php.ini
