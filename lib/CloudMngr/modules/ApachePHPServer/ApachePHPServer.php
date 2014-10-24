@@ -33,12 +33,9 @@ class CloudMngrApachePHPServer extends CloudMngrBaseModule{
 	protected function _getCountByRegion(){
 		$cnt = 0;
 		$groups = $this->group()->getAllGroups();
-		print_r($groups);
 		if(! $this->arrFull($groups)) return 0;
 		foreach($groups as $id => $group){
-			echo($id);
 			$data = $this->loadByGroup($id);
-			print_r($data);
 			if($this->arrFull($this->data_arr['regions'][$this->region_id]['instances'])) $cnt += count($region['instances']);
 		}
 		return $cnt;
