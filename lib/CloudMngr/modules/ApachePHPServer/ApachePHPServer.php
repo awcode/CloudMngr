@@ -24,7 +24,7 @@ class CloudMngrApachePHPServer extends CloudMngrBaseModule{
 		$data = $this->getData();
 		if(! $this->arrFull($this->data_arr['regions'])) return 0;
 		$cnt = 0;
-		foreach($this->data_arr['regions'] as $region{
+		foreach($this->data_arr['regions'] as $region){
 			if($this->arrFull($region['instances'])) $cnt += count($region['instances']);
 		}
 		return $cnt;
