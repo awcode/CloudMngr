@@ -20,7 +20,7 @@ class CloudMngrLoadBalancerNginx extends CloudMngrBaseModule{
 			$data = $this->loadByGroup($id);
 			if($this->arrFull($this->data_arr['regions'])){
 				foreach($this->data_arr['regions'] as $region){
-					if($this->arrFull($region['instances'])) $cnt += count($region['instances']);
+					if($this->arrFull($region['instances'])) $cnt += count($this->data_arr['regions'][$this->region_id]['instances']);
 				}
 			}
 		}
@@ -33,8 +33,7 @@ class CloudMngrLoadBalancerNginx extends CloudMngrBaseModule{
 		if(! $this->arrFull($groups)) return 0;
 		foreach($groups as $id => $group){
 			$data = $this->loadByGroup($id);
-echo($id);print_r($data);
-			if($this->arrFull($this->data_arr['regions'][$this->region_id]['instances'])) $cnt += count($region['instances']);
+			if($this->arrFull($this->data_arr['regions'][$this->region_id]['instances'])) $cnt += count($this->data_arr['regions'][$this->region_id]['instances']);
 		}
 		return $cnt;
 	}
