@@ -15,7 +15,9 @@ $action = $_POST['action'];
 
 if($module != "" && file_exists($CloudMngr->class_path . DIRECTORY_SEPARATOR . "modules" . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . $module.'.php')){
 	$action_file = $CloudMngr->class_path . DIRECTORY_SEPARATOR . "modules" . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . "cmd" . DIRECTORY_SEPARATOR . $action .'.php';
+echo("!");
 	if(file_exists($action_file)){
+echo("@");
 		include($action_file);
 	}
 }
