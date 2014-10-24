@@ -83,7 +83,7 @@ class CloudMngr {
 	
 	function module($module){
 print_r($this->_modules);
-		if($this->_modules[$module] == null){
+		if(!is_object($this->_modules[$module])){
 			if (!$this->class_path . DIRECTORY_SEPARATOR . "modules" . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . $module.'.php') return false;
 			include_once($this->class_path . DIRECTORY_SEPARATOR . "modules" . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . $module.'.php');
 			$moduleClass = "CloudMngr".$module;
