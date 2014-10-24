@@ -31,7 +31,7 @@ foreach($group['regions'] as $index=>$id){
  		    </div>
                     <div class="row-fluid">
 
- 			<div class="span6">
+ 						<div class="span6">
                             <!-- block -->
                             <div class="block">
                                 <div class="navbar navbar-inner block-header">
@@ -78,13 +78,17 @@ foreach($group['regions'] as $index=>$id){
                         </div>
 <?php
 if($CloudMngr->arrFull($CloudMngr->active_modules)){
+	$cnt = 1;
 	foreach($CloudMngr->active_modules as $module){
 		$ob = $CloudMngr->module($module);
 		$CloudMngr->module($module)->displayGroupPanel();
+		$cnt ++;
+		if($cnt == 2){$cnt = 0; echo('</div><div class="row-fluid">');}
 	}
 } 
 ?>
 
+                    </div>
 <script src="assets/scripts.js"></script>
 
           

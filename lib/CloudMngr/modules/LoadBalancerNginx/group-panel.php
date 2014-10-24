@@ -10,7 +10,7 @@ $regions = $this->region()->getAllRegions();
                                     <div class="pull-right">
 					<span id="toggleLoadbalance" style="display:none"><select id="launchLoadRegion"><?=$regions_select?></select><input type="button" id="launchLoadbalanceGo" value="Go"></span>
 					<span class="badge badge-info"><a href='#' id='launchLoadbalance'>Launch</a></span>
-                                    	<span class="badge badge-info"><a href='/?page=loadbalancer&id=<?=$CloudMngr->group()->getId()?>'>Config</a></span>
+                                    	<span class="badge badge-info"><a href='/?page=loadbalancer&id=<?=$this->group()->getId()?>'>Config</a></span>
                                     </div>
                                 </div>
                                 <div class="block-content collapse in">
@@ -51,7 +51,7 @@ foreach($group['regions'] as $index=>$id){
                             <!-- /block -->
                         </div>
 
-                    </div>
+
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#launchLoadbalance").click(function(){
@@ -62,7 +62,7 @@ foreach($group['regions'] as $index=>$id){
 			$.ajax({
 				"url": "/cmd.php?action=launch",
 				"data": {
-					"group": "<?=$CloudMngr->group()->getId()?>",
+					"group": "<?=$this->group()->getId()?>",
 					"region": $("#launchLoadRegion option:selected").val()
 				},
 				"method": "post",
@@ -76,7 +76,7 @@ function terminateInstance(insttype, id){
 	$.ajax({
 		"url": "/cmd.php?action=terminate",
 		"data": {
-			"group": "<?=$CloudMngr->group()->getId()?>",
+			"group": "<?=$this->group()->getId()?>",
 			"region": $("#launchLoadRegion option:selected").val(),
 			"type": insttype,
 			"instance_id": id
