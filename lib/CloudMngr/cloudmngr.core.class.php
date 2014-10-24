@@ -82,15 +82,16 @@ class CloudMngr {
 	}
 	
 	function module($module){
+print_r($this->_modules);
 		if($this->_modules[$module] == null){
 			if (!$this->class_path . DIRECTORY_SEPARATOR . "modules" . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . $module.'.php') return false;
 			include_once($this->class_path . DIRECTORY_SEPARATOR . "modules" . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . $module.'.php');
 			$moduleClass = "CloudMngr".$module;
 			$this->_modules[$module] = new $moduleClass($this->group_id, $this->region_id);
-			print_r($this->_modules);
+			
 			$this->_modules[$module]->module_name = $module;
 		}
-
+print_r($this->_modules);
 		return $this->_modules[$module];	
 	}
 
