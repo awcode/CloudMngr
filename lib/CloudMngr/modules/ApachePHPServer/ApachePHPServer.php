@@ -13,36 +13,36 @@ class CloudMngrApachePHPServer extends CloudMngrBaseModule{
 	}
 
 	protected function _getTotalCount(){
-		$group_id = $this->group_id;
-		$cnt = 0;
-		$groups = $this->group()->getAllGroups();
-		if(! $this->arrFull($groups)) return 0;
-		foreach($groups as $id => $group){
-			$this->setGroup($id);
-			$data = $this->getData();
-			if($this->arrFull($this->data_arr['regions'])){
-				foreach($this->data_arr['regions'] as $region){
-					if($this->arrFull($region['instances'])) $cnt += count($region['instances']);
-				}
-			}
-		}
-		$this->setGroup($group_id);
-		return $cnt;
-	}
-	
-	protected function _getCountByRegion(){
 		$cnt = 0;
 		$groups = $this->group()->getAllGroups();
 		if(! $this->arrFull($groups)) return 0;
 		foreach($groups as $id => $group){
 			$data = $this->loadByGroup($id);
-			if($this->arrFull($this->data_arr['regions'][$this->region_id]['instances'])) $cnt += count($region['instances']);
+			if($this->arrFull($this->data_arr['regions'])){
+				foreach($this->data_arr['regions'] as $rid=>$region){
+					if($this->arrFull($region['instances'])) $cnt += count($this->data_arr['regions'][$rid]['instances']);
+				}
+			}
 		}
 		return $cnt;
 	}
 	
-	protected function _getCountByGroup(){
-		$data = $this->getData();
+	protected function _getCountByRegion($region_id=""){
+		$cnt = 0;
+		$region_id = (($region_id)?$region_id:$this->region_id);
+		$groups = $this->group()->getAllGroups();
+		if(! $this->arrFull($groups)) return 0;
+		foreach($groups as $id => $group){
+			$data = $this->loadByGroup($id);
+echo($this->region_id);			
+			if($this->arrFull($this->data_arr['regions'][$region_id]['instances'])) $cnt += count($this->data_arr['regions'][$region_id]['instances']);
+		}
+		return $cnt;
+	}
+	
+	protected function _getCountByGroup($group_id=""){
+		$group_id = ($group_id!="") ? $group_id : $this->group_id;	
+		$data = $this->loadByGroup($group_id);
 		if(! $this->arrFull($this->data_arr['regions'])) return 0;
 		$cnt = 0;
 		foreach($this->data_arr['regions'] as $region){

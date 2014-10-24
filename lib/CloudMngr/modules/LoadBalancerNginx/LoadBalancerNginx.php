@@ -27,7 +27,7 @@ class CloudMngrLoadBalancerNginx extends CloudMngrBaseModule{
 		return $cnt;
 	}
 	
-	protected function _getCountByRegion($region_id){
+	protected function _getCountByRegion($region_id=""){
 		$cnt = 0;
 		$region_id = (($region_id)?$region_id:$this->region_id);
 		$groups = $this->group()->getAllGroups();
@@ -40,8 +40,9 @@ echo($this->region_id);
 		return $cnt;
 	}
 	
-	protected function _getCountByGroup(){
-		$data = $this->getData();
+	protected function _getCountByGroup($group_id=""){
+		$group_id = ($group_id!="") ? $group_id : $this->group_id;	
+		$data = $this->loadByGroup($group_id);
 		if(! $this->arrFull($this->data_arr['regions'])) return 0;
 		$cnt = 0;
 		foreach($this->data_arr['regions'] as $region){

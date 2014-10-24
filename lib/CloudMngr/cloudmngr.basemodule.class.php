@@ -30,31 +30,31 @@ class CloudMngrBaseModule extends CloudMngr{
 		return 0;
 	}
 	
-	public function getCountByRegion(){
-		return $this->_getCountByRegion();
+	public function getCountByRegion($region_id=""){
+		return $this->_getCountByRegion($region_id);
 	}
-	protected function _getCountByRegion(){
+	protected function _getCountByRegion($region_id=""){
 		return 0;
 	}
 	
-	public function getCountByGroup(){
-		return $this->_getCountByGroup();
+	public function getCountByGroup($group_id=""){
+		return $this->_getCountByGroup($group_id);
 	}
-	protected function _getCountByGroup(){
+	protected function _getCountByGroup($group_id=""){
 		return 0;
 	}
 
-	public function getHealthByRegion(){
-		return $this->_getHealthByRegion();
+	public function getHealthByRegion($region_id=""){
+		return $this->_getHealthByRegion($region_id);
 	}
-	protected function _getHealthByRegion(){
+	protected function _getHealthByRegion($region_id=""){
 		return "N/A";
 	}
 
-	public function getHealthByGroup(){
-		return $this->_getHealthByGroup();
+	public function getHealthByGroup($group_id=""){
+		return $this->_getHealthByGroup($group_id);
 	}
-	protected function _getHealthByGroup(){
+	protected function _getHealthByGroup($group_id=""){
 		return "N/A";
 	}
 	
