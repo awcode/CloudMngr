@@ -16,7 +16,7 @@ class CloudMngrApachePHPServer extends CloudMngrBaseModule{
 		$group_id = $this->group_id;
 		$cnt = 0;
 		$groups = $this->group()->getAllGroups();
-		if(! $this->arrFull($groups) return 0;
+		if(! $this->arrFull($groups)) return 0;
 		foreach($groups as $id => $group){
 			$this->setGroup($id);
 			$data = $this->getData();
@@ -34,7 +34,7 @@ class CloudMngrApachePHPServer extends CloudMngrBaseModule{
 		$group_id = $this->group_id;
 		$cnt = 0;
 		$groups = $this->group()->getAllGroups();
-		if(! $this->arrFull($groups) return 0;
+		if(! $this->arrFull($groups)) return 0;
 		foreach($groups as $id => $group){
 			$this->setGroup($id);
 			$data = $this->getData();
