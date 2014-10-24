@@ -1,4 +1,8 @@
-<?
+<?php
+include("../lib/CloudMngr/cloudmngr.core.class.php");
+
+$CloudMngr = new CloudMngr;
+
 session_start();
 if($_REQUEST['logout']){unset($_SESSION['admin']);}
 
@@ -35,7 +39,7 @@ else{$page="main";}
 	<? 
 	if($_SESSION['admin'] != ""){include("../template/temp-top.php");}
 
-	include($this->class_path."/content/".$page.".php");
+	include($CloudMngr->class_path."/content/".$page.".php");
 
 	if($_SESSION['admin'] != ""){include("../template/temp-bott.php");}
 

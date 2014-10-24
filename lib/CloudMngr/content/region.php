@@ -1,8 +1,4 @@
-<?
-include("../lib/CloudMngr/cloudmngr.core.class.php");
-
-$CloudMngr = new CloudMngr;
-
+<?php
 $region = $CloudMngr->region()->getRegion($_GET['id']);
 
 $groups = $CloudMngr->group()->getAllGroups();

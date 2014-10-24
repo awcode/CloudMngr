@@ -1,8 +1,4 @@
-<?
-include("../lib/CloudMngr/cloudmngr.core.class.php");
 
-$CloudMngr = new CloudMngr();
-?>
                     <div class="row-fluid">
                         <div class="alert alert-success">
 							<button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -24,7 +20,7 @@ $CloudMngr = new CloudMngr();
                     	</div>
  		    </div>
                     <div class="row-fluid">
-<?
+<?php
 	$groups = $CloudMngr->group()->getAllGroups();
 	foreach($groups as $key=>$group){
 	$odd +=1;

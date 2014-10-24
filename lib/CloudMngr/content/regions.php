@@ -1,8 +1,4 @@
-<?php
-include("../lib/CloudMngr/cloudmngr.core.class.php");
 
-$CloudMngr = new CloudMngr();
-?>
                     <div class="row-fluid">
                         <div class="alert alert-success">
 							<button type="button" class="close" data-dismiss="alert">&times;</button>

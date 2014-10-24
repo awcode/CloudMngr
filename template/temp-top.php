@@ -35,9 +35,7 @@
                                     </li>
 				    <li class="divider"></li>
 <?php
-	$regions_str = file_get_contents("/home/boss/data/regions");
-	$json = json_decode($regions_str, true);
-	$regions = $json['regions'];
+	$regions = $CloudMngr->region()->getAllRegions();
 	foreach($regions as $key=>$region){
 ?>
                                     <li>
@@ -59,9 +57,7 @@
                                     </li>
 				    <li class="divider"></li>
 <?php
-	$groups_str = file_get_contents("/home/boss/data/groups");
-	$json = json_decode($groups_str,true);
-	$groups = $json['groups'];
+	$groups = $CloudMngr->group()->getAllGroups();
 	foreach($groups as $key=>$group){
 ?>
                                     <li>
