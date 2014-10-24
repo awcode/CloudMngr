@@ -1,16 +1,14 @@
 <?
-include("../lib/CloudMngr/cloudmngr.core.class.php");
-
-$CloudMngr = new CloudMngr($_GET['id']);
+$CloudMngr->setGroup($_GET['id']);
 
 $group = $CloudMngr->group()->getGroup();
 $regions = $CloudMngr->region()->getAllRegions();
 
 if($_POST['update'] != ""){
-	$CloudMngr->loadBalancer()->saveLoadBalancerConfig();
+	$CloudMngr->modules("LoadBalancerNginx")->saveLoadBalancerConfig();
 }
 
-$load = $CloudMngr->loadBalancer()->getLoadBalancer();
+$load = $CloudMngr->modules("LoadBalancerNginx")->getLoadBalancer();
 
 ?>
 
