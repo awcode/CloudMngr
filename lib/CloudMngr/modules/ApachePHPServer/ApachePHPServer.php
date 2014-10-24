@@ -59,7 +59,7 @@ class CloudMngrApachePHPServer extends CloudMngrBaseModule{
 
 	function saveConfig(){
 		$this->loadByGroup();
-		if(! is_array($this->data_arr['loadbalancer'])) return $this->_error("Invalid ".$this->module_display_name." Array");
+		if(! is_array($this->data_arr)) return $this->_error("Invalid ".$this->module_display_name." Array");
 
 		$group = $this->group()->getGroup($this->group_id);
 		foreach($group['regions'] as $index=>$id){

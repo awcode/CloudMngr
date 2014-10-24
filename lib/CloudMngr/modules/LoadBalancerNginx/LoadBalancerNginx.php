@@ -93,7 +93,7 @@ class CloudMngrLoadBalancerNginx extends CloudMngrBaseModule{
 				, array(
 					array('Key'=>'Name', 'Value'=>'Load Balancer'),
 					array('Key'=>'CloudMngrRole', 'Value'=>'load'),
-					array('Key'=>'CloudMngrModule', 'Value'=>'LoadBalancerNginx')
+					array('Key'=>'CloudMngrModule', 'Value'=>$this->module_name)
 				));
 
 				$instance_id = $instance['InstanceId'];
