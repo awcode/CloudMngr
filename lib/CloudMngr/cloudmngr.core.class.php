@@ -39,7 +39,7 @@ class CloudMngr {
 		$chk_modules = scandir($this->class_path.DIRECTORY_SEPARATOR."Modules");
 		if($this->arrFull($chk_modules)){
 			foreach($chk_modules as $module){
-				if ($this->class_path . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . $module.'.php') $this->active_modules[] = $module;
+				if ($this->class_path . DIRECTORY_SEPARATOR . "modules" . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . $module.'.php') $this->active_modules[] = $module;
 			}
 		}
 	}
@@ -81,8 +81,8 @@ class CloudMngr {
 	
 	function module($module){
 		if($this->_modules[$module] == null){
-			if (!$this->class_path . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . $module.'.php') return false;
-			include_once($this->class_path . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . $module.'.php');
+			if (!$this->class_path . DIRECTORY_SEPARATOR . "modules" . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . $module.'.php') return false;
+			include_once($this->class_path . DIRECTORY_SEPARATOR . "modules" . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . $module.'.php');
 			$this->_modules[$module] = new $module($this->group_id, $this->region_id);
 			$this->_modules[$module]->module_name = $module;
 		}

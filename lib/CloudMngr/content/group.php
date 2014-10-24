@@ -1,5 +1,5 @@
 <?php
-$CloudMngr->setGroupId($_GET['id']);
+$CloudMngr->setGroup($_GET['id']);
 
 $group = $CloudMngr->group()->getGroup();
 $regions = $CloudMngr->region()->getAllRegions();
