@@ -47,7 +47,7 @@ class CloudMngr {
 	protected function setHooks(){
 		if($this->arrFull($this->hooks)){
 			foreach($this->hook as $hook){
-				$onEvent = $hook['onEvent';
+				$onEvent = $hook['onEvent'];
 				$forType = $hook['forType'];
 				$action = $hook['action'];
 				if(!in_array($action, $this->_hooks[$onEvent][$forType]))	$this->_hooks[$onEvent][$forType][] = $action;
