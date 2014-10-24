@@ -31,9 +31,11 @@ foreach($group['regions'] as $index=>$id){
                                         </thead>
                                         <tbody>
 <?php
+$cnt = 0;
 foreach($group['regions'] as $index=>$id){
 	if(count($this_arr['regions'][$id]['instances']) > 0){
 		foreach($this_arr['regions'][$id]['instances'] as $inst_id => $inst){
+			$cnt++;
 ?>
                                             <tr>
                                                 <td><?=$inst_id?></td>
@@ -45,10 +47,9 @@ foreach($group['regions'] as $index=>$id){
                                             </tr>
 <?php
 		}
-	}else{
-		echo("<tr><td colspan='5'>No ".$this->getName()." created</td></tr>");
 	}
 } 
+if(!$cnt) echo("<tr><td colspan='5'>No ".$this->getName()." created</td></tr>");
 ?>
                                         </tbody>
                                     </table>
