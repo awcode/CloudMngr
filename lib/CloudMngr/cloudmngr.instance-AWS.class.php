@@ -26,6 +26,9 @@ class CloudMngrInstanceAWS extends CloudMngr{
 
 
 	function launchNewInstance($imageId, $min, $max, $securityGroups, $instanceType, $placement, $subnetId){
+		$this->runHooks("beforeLaunchNewInstance", $this->module_name);
+		$this->runHooks("beforeAWSLaunchNewInstance", $this->module_name);
+		
 		$ec2 = $this->AWS->get('ec2');
 		$res = $ec2->runInstances(array(
 			'ImageId' => $imageId,
@@ -38,16 +41,24 @@ class CloudMngrInstanceAWS extends CloudMngr{
 		));
 		$instances = $res['Instances'];
 
+		$this->runHooks("afterLaunchNewInstance", $this->module_name);
+		$this->runHooks("afterAWSLaunchNewInstance", $this->module_name);
 		return $instances;
 	}
 
 	function setInstanceTags($resources, $tags){
+		$this->runHooks("beforeSetInstanceTags", $this->module_name);
+		$this->runHooks("beforeAWSSetInstanceTags", $this->module_name);
+
 		$ec2 = $this->AWS->get('ec2');
 		$res = $ec2->createTags(array(
 			'Resources' => $resources,
 			'Tags' => $tags
 		));
 		$instances = $res['Instances'];
+
+		$this->runHooks("afterSetInstanceTags", $this->module_name);
+		$this->runHooks("afterAWSSetInstanceTags", $this->module_name);
 
 		return $instances;
 	}
@@ -70,6 +81,9 @@ class CloudMngrInstanceAWS extends CloudMngr{
 	}
 
 	function assignPublicIp($instanceId){
+		$this->runHooks("beforeAssignPublicIP", $this->module_name);
+		$this->runHooks("beforeAWSAssignPublicIP", $this->module_name);
+
 		$ec2 = $this->AWS->get('ec2');
 		
 		if(!$this->waitInstanceState($instanceId, "running")){ echo("notrun"); return false;}
@@ -82,11 +96,17 @@ class CloudMngrInstanceAWS extends CloudMngr{
 			'AllocationId' => $res['AllocationId']
 		));
 
+		$this->runHooks("afterAssignPublicIP", $this->module_name);
+		$this->runHooks("afterAWSAssignPublicIP", $this->module_name);
+
 		if($res2['AssociationId']) return $res['PublicIp'];
 	
 	}
 
 	function terminateInstance($instanceIds){
+		$this->runHooks("beforeTerminateInstance", $this->module_name);
+		$this->runHooks("beforeAWSTerminateInstance", $this->module_name);
+
 		$ec2 = $this->AWS->get('ec2');
 
 		if(!is_array($instanceIds)){$instanceIds = array($instanceIds);}
@@ -125,6 +145,8 @@ class CloudMngrInstanceAWS extends CloudMngr{
 				}
 			}
 		}
+		$this->runHooks("afterTerminateInstance", $this->module_name);
+		$this->runHooks("afterAWSTerminateInstance", $this->module_name);
 	}
 
 }

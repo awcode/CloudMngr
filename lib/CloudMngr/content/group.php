@@ -79,7 +79,7 @@ foreach($group['regions'] as $index=>$id){
                      <div class="row-fluid">
 					<?php
 					if($CloudMngr->arrFull($CloudMngr->active_modules)){
-						$cnt = 1;
+						$cnt = 0;
 						foreach($CloudMngr->active_modules as $module){
 							$ob = $CloudMngr->module($module);
 							$ob->displayGroupPanel();

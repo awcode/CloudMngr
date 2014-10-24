@@ -5,8 +5,7 @@
  */
 
 class CloudMngrBaseModule extends CloudMngr{
-	private $module_type;
-	private $module_sub_type;
+
 	protected $module_name;
 	protected $module_display_name;
 	protected $module_path;
@@ -59,7 +58,9 @@ class CloudMngrBaseModule extends CloudMngr{
 	}
 	
 	public function displayDashboardPanel(){
+		$this->runHooks("beforeDisplayDashboardPanel", $this->module_name);
 		$this->_displayDashboardPanel();
+		$this->runHooks("afterDisplayDashboardPanel", $this->module_name);
 	}
 	protected function _displayDashboardPanel(){
 		$module = $this->module_name;
@@ -67,7 +68,9 @@ class CloudMngrBaseModule extends CloudMngr{
 	}
 	
 	public function displayRegionPanel(){
+		$this->runHooks("beforeDisplayRegionPanel", $this->module_name);
 		$this->_displayRegionPanel();
+		$this->runHooks("afterDisplayRegionPanel", $this->module_name);
 	}
 	protected function _displayRegionPanel(){
 		$module = $this->module_name;
@@ -75,7 +78,9 @@ class CloudMngrBaseModule extends CloudMngr{
 	}
 	
 	public function displayGroupPanel(){
+		$this->runHooks("beforeDisplayGroupPanel", $this->module_name);
 		$this->_displayGroupPanel();
+		$this->runHooks("beforeDisplayGroupPanel", $this->module_name);
 	}
 	protected function _displayGroupPanel(){
 		$module = $this->module_name;

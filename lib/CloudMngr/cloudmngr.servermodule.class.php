@@ -69,8 +69,10 @@ class CloudMngrServerModule extends CloudMngrBaseModule{
 	}
 
 	function writeArray(){
+		$this->runHooks("beforeWriteArray", $this->module_name);
 		if(!is_dir($this->base_path. "/data/".$this->module_name)){mk_dir($this->base_path. "/data/".$this->module_name);}
 		file_put_contents($this->base_path. "/data/".$this->module_name."/group-".$this->group_id, json_encode($this->data_arr, 128));
+		$this->runHooks("afterWriteArray", $this->module_name);
 	}
 
 	function getData(){
@@ -92,6 +94,7 @@ class CloudMngrServerModule extends CloudMngrBaseModule{
 
 
 	function saveConfig(){
+		$this->runHooks("beforeSaveConfig", $this->module_name);
 		$this->loadByGroup();
 		if(! is_array($this->data_arr)) return $this->_error("Invalid ".$this->module_display_name." Array");
 
@@ -106,11 +109,12 @@ class CloudMngrServerModule extends CloudMngrBaseModule{
 		}
 		$this->writeArray();
 		return $this->data_arr;
-
+		$this->runHooks("afterSaveConfig", $this->module_name);
 	}
 
 
 	function launchNew($config){
+		$this->runHooks("beforeLaunchNewServer", $this->module_name);
 		$imageId = $config['ami'];
 		$security = array($config['security']);
 		$type = $config['type'];
@@ -141,14 +145,19 @@ class CloudMngrServerModule extends CloudMngrBaseModule{
 			}
 			$this->writeArray();
 		}
-
+		$this->runHooks("afterLaunchNewServer", $this->module_name);
 	}
 
 	function terminate($instance_id){
-		echo($this->module_display_name." Terminated");
+		$this->runHooks("beforeTerminateServer", $this->module_name);
+		
 		$res = $this->instance()->terminateInstance($instance_id);
 
 		unset($this->data_arr['regions'][$this->region_id]['instances'][$instance_id]);
 		$this->writeArray();
+		
+		echo($this->module_display_name." Terminated");
+		
+		$this->runHooks("afterTerminateServer", $this->module_name);
 	}
 }

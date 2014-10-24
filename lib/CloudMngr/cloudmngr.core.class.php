@@ -18,7 +18,7 @@ class CloudMngr {
 	public $base_path;
 	
 	public $active_modules;
-
+	
 	protected $group_id;
 	protected $region_id;
 	protected $config;
@@ -53,7 +53,9 @@ class CloudMngr {
 				$onEvent = $hook['onEvent'];
 				$forType = $hook['forType'];
 				$action = $hook['action'];
-				if(!in_array($action, $this->_hooks[$onEvent][$forType]))	$this->_hooks[$onEvent][$forType][] = $action;
+				if(!in_array($action, $this->_hooks[$onEvent][$forType])){
+					$this->_hooks[$onEvent][$forType][] = $action;
+				}
 			}
 		}
 	}
@@ -61,7 +63,20 @@ class CloudMngr {
 	protected function runHooks($onEvent, $forType, $include_all=true){
 		if($this->arrFull($this->_hooks[$onEvent][$forType])){
 			foreach($this->_hooks[$onEvent][$forType] as $action){
-				$this->$action();
+				$module = $action['module'];
+				$method = $action['method'];
+				if($module) $this->module($module)->$method();
+				else $this->$method();
+			}
+		}
+		if($include_all){
+			if($this->arrFull($this->_hooks[$onEvent]["all"])){
+				foreach($this->_hooks[$onEvent]["all"] as $action){
+					$module = $action['module'];
+					$method = $action['method'];
+					if($module) $this->module($module)->$method();
+					else $this->$method();
+				}
 			}
 		}
 	}
@@ -123,7 +138,7 @@ class CloudMngr {
 	function _error($message, $response=-1, $type="notice"){
 		//[TODO] Add full logging, display and verbosity options.
 		echo($message);
-		
+		$this->runHooks("error", $this->module_name);
 		return $response;
 	}
 	
