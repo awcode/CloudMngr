@@ -81,20 +81,6 @@ class CloudMngr {
 		return $this->_region;
 	}
 	
-	function module($module){
-		if(!is_object($this->_modules[$module])){
-			if (!file_exists($this->class_path . DIRECTORY_SEPARATOR . "modules" . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . $module.'.php')) return false;
-			include_once($this->class_path . DIRECTORY_SEPARATOR . "modules" . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . $module.'.php');
-			$moduleClass = "CloudMngr".$module;
-			$this->_modules[$module] = new $moduleClass($this->group_id, $this->region_id);
-			
-			$this->_modules[$module]->module_name = $module;
-			$this->_modules[$module]->module_path = $this->class_path . DIRECTORY_SEPARATOR . "modules" . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR;
-		}
-		return $this->_modules[$module];	
-	}
-
-
 	function instance(){
 		if($this->_instance == null){
 			if(!$this->region_id){return -1;}
@@ -118,6 +104,19 @@ class CloudMngr {
 		$this->region_id = $region_id;
 		if($this->_group) $this->_group->setRegion($region_id);
 		if($this->_region) $this->_region->setRegion($region_id);
+	}
+
+	function module($module){
+		if(!is_object($this->_modules[$module])){
+			if (!file_exists($this->class_path . DIRECTORY_SEPARATOR . "modules" . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . $module.'.php')) return false;
+			include_once($this->class_path . DIRECTORY_SEPARATOR . "modules" . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . $module.'.php');
+			$moduleClass = "CloudMngr".$module;
+			$this->_modules[$module] = new $moduleClass($this->group_id, $this->region_id);
+			
+			$this->_modules[$module]->module_name = $module;
+			$this->_modules[$module]->module_path = $this->class_path . DIRECTORY_SEPARATOR . "modules" . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR;
+		}
+		return $this->_modules[$module];	
 	}
 
 	function _error($message, $response=-1, $type="notice"){
