@@ -14,7 +14,7 @@ foreach($group['regions'] as $index=>$id){
                                     <div class="pull-right">
 					<span id="toggleLoadbalance" style="display:none"><select id="launchLoadRegion"><?=$regions_select?></select><input type="button" id="launchLoadbalanceGo" value="Go"></span>
 					<span class="badge badge-info"><a href='#' id='launchLoadbalance'>Launch</a></span>
-                                    	<span class="badge badge-info"><a href='/?page=loadbalancer&id=<?=$this->group()->getId()?>'>Config</a></span>
+                                    	<span class="badge badge-info"><a href="/?module=<?=$this->getName()?>page=edit-config&id=<?=$this->group()->getId()?>">Config</a></span>
                                     </div>
                                 </div>
                                 <div class="block-content collapse in">

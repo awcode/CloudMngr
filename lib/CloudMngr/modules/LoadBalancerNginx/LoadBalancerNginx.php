@@ -86,7 +86,6 @@ class CloudMngrLoadBalancerNginx extends CloudMngrBaseModule{
 
 		if(count($instances) > 0){
 			foreach($instances as $instance){
-				echo($instance['InstanceId']);
 				
 				$ip = $this->instance()->assignPublicIp($instance['InstanceId']);
 
@@ -102,7 +101,7 @@ class CloudMngrLoadBalancerNginx extends CloudMngrBaseModule{
 					'type' => $type,
 					'launched' => date("Y-m-d")
 				);
-				echo("Load Balancer Created");
+				echo("Load Balancer Created: ID ".$instance['InstanceId']);
 			}
 			$this->writeLoadBalancerArray();
 		}

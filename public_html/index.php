@@ -13,7 +13,7 @@ if($_POST['login_email'] == "markw" && $_POST['login_pass'] == "chang"){
 if($_SESSION['admin'] == ""){$page = "login";}
 elseif($_GET['page']){$page = $_GET['page'];}
 else{$page="main";}
-//[TODO] Clean path from XSS etc.
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -38,8 +38,12 @@ else{$page="main";}
 
 	<? 
 	if($_SESSION['admin'] != ""){include("../template/temp-top.php");}
-
-	include($CloudMngr->class_path."/content/".$page.".php");
+	//[TODO] Clean path from XSS etc.
+	if($_GET['module']!=""){
+		include($CloudMngr->class_path."/modules/".$_GET['module']."/".$page.".php");
+	}else{
+		include($CloudMngr->class_path."/content/".$page.".php");
+	}
 
 	if($_SESSION['admin'] != ""){include("../template/temp-bott.php");}
 
