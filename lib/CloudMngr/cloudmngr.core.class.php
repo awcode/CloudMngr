@@ -87,7 +87,7 @@ class CloudMngr {
 			include_once($this->class_path . DIRECTORY_SEPARATOR . "modules" . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . $module.'.php');
 			$moduleClass = "CloudMngr".$module;
 			$this->_modules[$module] = new $moduleClass($this->group_id, $this->region_id);
-			print_r($this->_modules[$module]);
+			print_r($this->_modules);
 			$this->_modules[$module]->module_name = $module;
 		}
 
