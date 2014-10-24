@@ -13,11 +13,32 @@ class CloudMngrLoadBalancerNginx extends CloudMngrBaseModule{
 	}
 
 	protected function _getTotalCount(){
-		return 0;
+		$group_id = $this->group_id;
+		$cnt = 0;
+		$groups = $this->group()->getAllGroups();
+		if(! $this->arrFull($groups)) return 0;
+		foreach($groups as $id => $group){
+			$this->setGroup($id);
+			$data = $this->getData();
+			if($this->arrFull($this->data_arr['regions'])){
+				foreach($this->data_arr['regions'] as $region){
+					if($this->arrFull($region['instances'])) $cnt += count($region['instances']);
+				}
+			}
+		}
+		$this->setGroup($group_id);
+		return $cnt;
 	}
 	
 	protected function _getCountByRegion(){
-		return 0;
+		$cnt = 0;
+		$groups = $this->group()->getAllGroups();
+		if(! $this->arrFull($groups)) return 0;
+		foreach($groups as $id => $group){
+			$data = $this->loadByGroup($id);
+			if($this->arrFull($this->data_arr['regions'][$this->region_id]['instances'])) $cnt += count($region['instances']);
+		}
+		return $cnt;
 	}
 	
 	protected function _getCountByGroup(){
