@@ -5,10 +5,10 @@ $group = $CloudMngr->group()->getGroup();
 $regions = $CloudMngr->region()->getAllRegions();
 
 if($_POST['update'] != ""){
-	$CloudMngr->modules("LoadBalancerNginx")->saveLoadBalancerConfig();
+	$CloudMngr->module("LoadBalancerNginx")->saveLoadBalancerConfig();
 }
 
-$load = $CloudMngr->modules("LoadBalancerNginx")->getLoadBalancer();
+$load = $CloudMngr->module("LoadBalancerNginx")->getLoadBalancer();
 
 ?>
 
