@@ -85,7 +85,8 @@ class CloudMngr {
 		if($this->_modules[$module] == null){
 			if (!$this->class_path . DIRECTORY_SEPARATOR . "modules" . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . $module.'.php') return false;
 			include_once($this->class_path . DIRECTORY_SEPARATOR . "modules" . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . $module.'.php');
-			$this->_modules[$module] = new CloudMngr$module($this->group_id, $this->region_id);
+			$moduleClass = "CloudMngr".$module;
+			$this->_modules[$module] = new $moduleClass($this->group_id, $this->region_id);
 			print_r($this->_modules[$module]);
 			$this->_modules[$module]->module_name = $module;
 		}
