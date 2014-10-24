@@ -49,7 +49,7 @@ foreach($group['regions'] as $index=>$id){
 		}
 	}
 } 
-if(!$cnt) echo("<tr><td colspan='5'>No ".$this->getName()." created</td></tr>");
+if(!$cnt) echo("<tr><td colspan='5'>No ".$this->getDisplayName()." created</td></tr>");
 ?>
                                         </tbody>
                                     </table>

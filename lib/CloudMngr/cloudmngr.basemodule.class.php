@@ -43,6 +43,20 @@ class CloudMngrBaseModule extends CloudMngr{
 	protected function _getCountByGroup(){
 		return 0;
 	}
+
+	public function getHealthByRegion(){
+		$this->_getHealthByRegion();
+	}
+	protected function _getHealthByRegion(){
+		return "N/A";
+	}
+
+	public function getHealthByGroup(){
+		$this->_getHealthByGroup();
+	}
+	protected function _getHealthByGroup(){
+		return "N/A";
+	}
 	
 	public function displayDashboardPanel(){
 		$this->_displayDashboardPanel();
