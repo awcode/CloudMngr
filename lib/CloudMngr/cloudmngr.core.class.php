@@ -39,7 +39,9 @@ class CloudMngr {
 		$chk_modules = scandir($this->class_path.DIRECTORY_SEPARATOR."modules");
 		if($this->arrFull($chk_modules)){
 			foreach($chk_modules as $module){
-				if ($this->class_path . DIRECTORY_SEPARATOR . "modules" . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . $module.'.php') $this->active_modules[] = $module;
+				if (file_exists($this->class_path . DIRECTORY_SEPARATOR . "modules" . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . $module.'.php')){
+					$this->active_modules[] = $module;
+				} 
 			}
 		}
 	}
