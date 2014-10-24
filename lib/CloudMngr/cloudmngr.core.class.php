@@ -84,7 +84,7 @@ class CloudMngr {
 	function module($module){
 print_r($this->_modules);
 		if(!is_object($this->_modules[$module])){
-			if (!$this->class_path . DIRECTORY_SEPARATOR . "modules" . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . $module.'.php') echo $this->class_path . DIRECTORY_SEPARATOR . "modules" . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . $module.'.php'; return false;
+			if (!file_exists($this->class_path . DIRECTORY_SEPARATOR . "modules" . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . $module.'.php')) return false;
 			include_once($this->class_path . DIRECTORY_SEPARATOR . "modules" . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . $module.'.php');
 			$moduleClass = "CloudMngr".$module;
 			$this->_modules[$module] = new $moduleClass($this->group_id, $this->region_id);
