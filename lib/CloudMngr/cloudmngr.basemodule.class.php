@@ -14,7 +14,6 @@ class CloudMngrBaseModule extends CloudMngr{
 
 	function __construct($group_id="", $region_id=""){
 		parent::__construct($group_id, $region_id);
-		$this->module_path = $this->class_path . DIRECTORY_SEPARATOR . "modules" . $this->module_name;
 	}
 	
 	public function getName(){
