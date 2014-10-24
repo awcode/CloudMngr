@@ -6,7 +6,7 @@ $regions = $this->region()->getAllRegions();
                             <!-- block -->
                             <div class="block">
                                 <div class="navbar navbar-inner block-header">
-                                    <div class="muted pull-left"><?=$group['name']?> - <?=$CloudMngr->module($module)->getDisplayName()?></div>
+                                    <div class="muted pull-left"><?=$group['name']?> - <?=$this->getDisplayName()?></div>
                                     <div class="pull-right">
 					<span id="toggleLoadbalance" style="display:none"><select id="launchLoadRegion"><?=$regions_select?></select><input type="button" id="launchLoadbalanceGo" value="Go"></span>
 					<span class="badge badge-info"><a href='#' id='launchLoadbalance'>Launch</a></span>
