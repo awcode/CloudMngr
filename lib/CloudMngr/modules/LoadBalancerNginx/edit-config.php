@@ -12,7 +12,7 @@ if($_POST['update'] != ""){
 
 
 
-$this_arr = $mod->getLoadBalancer();
+$this_arr = $mod->getData();
 
 ?>
 

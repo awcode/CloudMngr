@@ -12,7 +12,7 @@ if($_POST['update'] != ""){
 
 
 
-$this_arr = $mod->getWebServer();
+$this_arr = $mod->getData();
 
 ?>
 
