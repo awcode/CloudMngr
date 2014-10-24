@@ -33,6 +33,7 @@ class CloudMngrLoadBalancerNginx extends CloudMngrBaseModule{
 		if(! $this->arrFull($groups)) return 0;
 		foreach($groups as $id => $group){
 			$data = $this->loadByGroup($id);
+echo($this->region_id);			
 			if($this->arrFull($this->data_arr['regions'][$this->region_id]['instances'])) $cnt += count($this->data_arr['regions'][$this->region_id]['instances']);
 		}
 		return $cnt;
