@@ -50,7 +50,7 @@ class CloudMngrBaseModule extends CloudMngr{
 	}
 	protected function _displayDashboardPanel(){
 		$module = $this->module_name;
-		if(file_exists($this->module_path."dashboard-panel.php")) include($this->module_path."dashboard-panel.php");			
+		if(file_exists($this->module_path . DIRECTORY_SEPARATOR ."dashboard-panel.php")) include($this->module_path . DIRECTORY_SEPARATOR ."dashboard-panel.php");			
 	}
 	
 	public function displayRegionPanel(){
@@ -58,7 +58,7 @@ class CloudMngrBaseModule extends CloudMngr{
 	}
 	protected function _displayRegionPanel(){
 		$module = $this->module_name;
-		if(file_exists($this->module_path."region-panel.php")) include($this->module_path."region-panel.php");	
+		if(file_exists($this->module_path . DIRECTORY_SEPARATOR ."region-panel.php")) include($this->module_path . DIRECTORY_SEPARATOR ."region-panel.php");	
 	}
 	
 	public function displayGroupPanel(){
@@ -66,6 +66,6 @@ class CloudMngrBaseModule extends CloudMngr{
 	}
 	protected function _displayGroupPanel(){
 		$module = $this->module_name;
-		if(file_exists($this->module_path."group-panel.php")) include($this->module_path."group-panel.php");
+		if(file_exists($this->module_path . DIRECTORY_SEPARATOR ."group-panel.php")) include($this->module_path . DIRECTORY_SEPARATOR ."group-panel.php");
 	}
 }

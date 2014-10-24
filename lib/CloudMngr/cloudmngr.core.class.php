@@ -82,7 +82,6 @@ class CloudMngr {
 	}
 	
 	function module($module){
-print_r($this->_modules);
 		if(!is_object($this->_modules[$module])){
 			if (!file_exists($this->class_path . DIRECTORY_SEPARATOR . "modules" . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . $module.'.php')) return false;
 			include_once($this->class_path . DIRECTORY_SEPARATOR . "modules" . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . $module.'.php');
@@ -91,7 +90,6 @@ print_r($this->_modules);
 			
 			$this->_modules[$module]->module_name = $module;
 		}
-print_r($this->_modules);
 		return $this->_modules[$module];	
 	}
 
