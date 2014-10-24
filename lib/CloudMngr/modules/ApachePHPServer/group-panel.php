@@ -59,7 +59,7 @@ foreach($group['regions'] as $index=>$id){
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#launch<?=$this->getName()?>").click(function(){
-			$("#toggle<?=$this->getName()>").toggle();
+			$("#toggle<?=$this->getName()?>").toggle();
 		});
 	
 		$("#launch<?=$this->getName()?>Go").click(function(){
