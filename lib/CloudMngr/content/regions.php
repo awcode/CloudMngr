@@ -58,8 +58,8 @@
 													?>
 						                               <tr>
 						                                    <td><?=$ob->getDisplayName()?></td>
-						                                    <td><?=$ob->getCountByRegion()?></td>
-						                                    <td><?=$ob->getHealthByRegion()?></td>
+						                                    <td><?=$ob->getCountByRegion($key)?></td>
+						                                    <td><?=$ob->getHealthByRegion($key)?></td>
 						                                </tr>
 											
 													<?php
