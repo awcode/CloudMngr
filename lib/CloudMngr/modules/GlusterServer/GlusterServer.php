@@ -1,10 +1,10 @@
 <?php
 /* Copyright Mark Walker (AWcode) 2014
  *
- * CloudMngrMySQLServer Class
+ * CloudMngrGlusterServer Class
  */
 
-class CloudMngrMySQLServer extends CloudMngrServerModule{
+class CloudMngrGlusterServer extends CloudMngrServerModule{
 	protected $module_display_name = "Gluster Filesystem";
 	
 	function __construct($group_id="", $region_id=""){
