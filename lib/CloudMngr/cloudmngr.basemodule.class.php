@@ -66,6 +66,7 @@ class CloudMngrBaseModule extends CloudMngr{
 	}
 	protected function _displayGroupPanel(){
 		$module = $this->module_name;
+		echo($this->module_path . DIRECTORY_SEPARATOR ."group-panel.php");
 		if(file_exists($this->module_path . DIRECTORY_SEPARATOR ."group-panel.php")) include($this->module_path . DIRECTORY_SEPARATOR ."group-panel.php");
 	}
 }
