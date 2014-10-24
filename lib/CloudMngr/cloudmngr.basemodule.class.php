@@ -24,35 +24,35 @@ class CloudMngrBaseModule extends CloudMngr{
 	}
 
 	public function getTotalCount(){
-		$this->_getTotalCount();
+		return $this->_getTotalCount();
 	}
 	protected function _getTotalCount(){
 		return 0;
 	}
 	
 	public function getCountByRegion(){
-		$this->_getCountByRegion();
+		return $this->_getCountByRegion();
 	}
 	protected function _getCountByRegion(){
 		return 0;
 	}
 	
 	public function getCountByGroup(){
-		$this->_getCountByGroup();
+		return $this->_getCountByGroup();
 	}
 	protected function _getCountByGroup(){
 		return 0;
 	}
 
 	public function getHealthByRegion(){
-		$this->_getHealthByRegion();
+		return $this->_getHealthByRegion();
 	}
 	protected function _getHealthByRegion(){
 		return "N/A";
 	}
 
 	public function getHealthByGroup(){
-		$this->_getHealthByGroup();
+		return $this->_getHealthByGroup();
 	}
 	protected function _getHealthByGroup(){
 		return "N/A";

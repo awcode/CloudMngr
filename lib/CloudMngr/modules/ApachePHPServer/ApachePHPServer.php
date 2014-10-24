@@ -21,7 +21,21 @@ class CloudMngrApachePHPServer extends CloudMngrBaseModule{
 	}
 	
 	protected function _getCountByGroup(){
-		return 0;
+		$data = $this->getData();
+		if(! $this->arrFull($this->data_arr['regions'])) return 0;
+		$cnt = 0;
+		foreach($this->data_arr['regions'] as $region{
+			if($this->arrFull($region['instances'])) $cnt += count($region['instances']);
+		}
+		return $cnt;
+	}
+	
+	protected function _getHealthByRegion(){
+		return "Coming soon";
+	}
+	
+	protected function _getHealthByGroup(){
+		return "Coming soon";
 	}
 
 	function loadByGroup($group_id=""){
