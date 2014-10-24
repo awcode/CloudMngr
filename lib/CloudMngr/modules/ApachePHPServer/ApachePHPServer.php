@@ -1,12 +1,12 @@
 <?php
 /* Copyright Mark Walker (AWcode) 2014
  *
- * CloudMngrLoadBalancer Class
+ * CloudMngrApachePHPServer Class
  */
 
-class CloudMngrLoadBalancerNginx extends CloudMngrBaseModule{
+class CloudMngrApachePHPServer extends CloudMngrBaseModule{
 	private $load_arr;
-	protected $module_display_name = "Load Balancer (NginX)";
+	protected $module_display_name = "Web Server (Apache + PHP)";
 	
 	function __construct($group_id="", $region_id=""){
 		parent::__construct($group_id, $region_id);
@@ -38,10 +38,10 @@ class CloudMngrLoadBalancerNginx extends CloudMngrBaseModule{
 		file_put_contents($this->base_path. "/data/".$this->module_name."/group-".$this->group_id, json_encode($this->load_arr, 128));
 	}
 
-	function getLoadBalancer(){
+	function getWebServer(){
 		$this->loadByGroup();
-		if(! is_array($this->load_arr['loadbalancer'])) return $this->_error("Invalid ".$this->module_display_name." Array");
-		return $this->load_arr['loadbalancer'];
+		if(! is_array($this->load_arr['webserver'])) return $this->_error("Invalid ".$this->module_display_name." Array");
+		return $this->load_arr['webserver'];
 
 	}
 
@@ -50,9 +50,9 @@ class CloudMngrLoadBalancerNginx extends CloudMngrBaseModule{
 		if(!$region_id) return -1;
 
 		$this->loadByGroup();
-		if(! is_array($this->load_arr['loadbalancer'])) return $this->_error("Invalid ".$this->module_display_name." Array");
+		if(! is_array($this->load_arr['webserver'])) return $this->_error("Invalid ".$this->module_display_name." Array");
 
-		return $this->load_arr['loadbalancer']['regions'][$region_id];
+		return $this->load_arr['webserver']['regions'][$region_id];
 	}
 
 
@@ -62,15 +62,15 @@ class CloudMngrLoadBalancerNginx extends CloudMngrBaseModule{
 
 		$group = $this->group()->getGroup($this->group_id);
 		foreach($group['regions'] as $index=>$id){
-			$this->load_arr['loadbalancer']['regions'][$id]['ami'] = $_POST['ami-'.$index];
-			$this->load_arr['loadbalancer']['regions'][$id]['security'] = $_POST['security-'.$index];
-			$this->load_arr['loadbalancer']['regions'][$id]['type'] = $_POST['type-'.$index];
-			$this->load_arr['loadbalancer']['regions'][$id]['zone'] = $_POST['zone-'.$index];
-			$this->load_arr['loadbalancer']['regions'][$id]['config'] = $_POST['config-'.$index];
-			$this->load_arr['loadbalancer']['regions'][$id]['subnet'] = $_POST['subnet-'.$index];
+			$this->load_arr['webserver']['regions'][$id]['ami'] = $_POST['ami-'.$index];
+			$this->load_arr['webserver']['regions'][$id]['security'] = $_POST['security-'.$index];
+			$this->load_arr['webserver']['regions'][$id]['type'] = $_POST['type-'.$index];
+			$this->load_arr['webserver']['regions'][$id]['zone'] = $_POST['zone-'.$index];
+			$this->load_arr['webserver']['regions'][$id]['config'] = $_POST['config-'.$index];
+			$this->load_arr['webserver']['regions'][$id]['subnet'] = $_POST['subnet-'.$index];
 		}
 		$this->writeArray();
-		return $this->load_arr['loadbalancer'];
+		return $this->load_arr['webserver'];
 
 	}
 
@@ -91,9 +91,9 @@ class CloudMngrLoadBalancerNginx extends CloudMngrBaseModule{
 
 				$this->instance()->setInstanceTags(array($instance['InstanceId'])
 				, array(
-					array('Key'=>'Name', 'Value'=>'Load Balancer'),
-					array('Key'=>'CloudMngrRole', 'Value'=>'load'),
-					array('Key'=>'CloudMngrModule', 'Value'=>'LoadBalancerNginx')
+					array('Key'=>'Name', 'Value'=>'Web Server'),
+					array('Key'=>'cloudMngrRole', 'Value'=>'web'),
+					array('Key'=>'cloudMngrModule', 'Value'=>'ApachePHPServer')
 				));
 
 				$instance_id = $instance['InstanceId'];
@@ -113,7 +113,7 @@ class CloudMngrLoadBalancerNginx extends CloudMngrBaseModule{
 		echo($this->module_display_name." Terminated");
 		$res = $this->instance()->terminateInstance($instance_id);
 
-		unset($this->load_arr['loadbalancer']['regions'][$this->region_id]['instances'][$instance_id]);
+		unset($this->load_arr['webserver']['regions'][$this->region_id]['instances'][$instance_id]);
 		$this->writeArray();
 	}
 }
