@@ -89,7 +89,7 @@ class CloudMngr {
 			$this->_modules[$module] = new $moduleClass($this->group_id, $this->region_id);
 			
 			$this->_modules[$module]->module_name = $module;
-			$this->_modules[$module]->module_path = $this->class_path . DIRECTORY_SEPARATOR . "modules" . $module . DIRECTORY_SEPARATOR;
+			$this->_modules[$module]->module_path = $this->class_path . DIRECTORY_SEPARATOR . "modules" . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR;
 		}
 		return $this->_modules[$module];	
 	}
