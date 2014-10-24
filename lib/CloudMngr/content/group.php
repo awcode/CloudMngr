@@ -57,6 +57,8 @@ foreach($group['regions'] as $index=>$id){
                                                 <td>Regions</td>
                                                 <?=$type_row?>
                                             </tr>
+                                         </thead>
+                                         <tbody>
                                             <tr>
                                                 <th>Active</th>
                                                 <td><?=count($regions_arr)." ".implode(", ",$regions_arr)?></td>
@@ -67,7 +69,7 @@ foreach($group['regions'] as $index=>$id){
                                                 <td>100%</td>
                                                 <?=$health_row?>
                                             </tr>
-                                        </thead>
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
