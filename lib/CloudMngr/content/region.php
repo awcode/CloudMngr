@@ -54,21 +54,21 @@ foreach($groups as $key=>$group){
                                                 <td><?=count($group_arr)." ".implode(", ",$group_arr)?></td>
                                                 <td>100%</td>
                                             </tr>
-                                            <tr>
-                                                <td>Load Balancer</td>
-                                                <td>1</td>
-                                                <td>100%</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Web server</td>
-                                                <td>3</td>
-                                                <td>90%</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Database</td>
-                                                <td>2</td>
-                                                <td>100%</td>
-                                            </tr>
+                                            <?php
+						                	if($CloudMngr->arrFull($CloudMngr->active_modules)){
+												foreach($CloudMngr->active_modules as $module){
+													$ob = $CloudMngr->module($module);
+													?>
+						                               <tr>
+						                                    <td><?=$ob->getDisplayName()?></td>
+						                                    <td><?=$ob->getCountByRegion($_GET['id'])?></td>
+						                                    <td><?=$ob->getHealthByRegion($_GET['id'])?></td>
+						                                </tr>
+											
+													<?php
+												}
+											} 
+						                	?>
                                         </tbody>
                                     </table>
                                 </div>
