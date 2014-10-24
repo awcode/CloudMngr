@@ -20,6 +20,8 @@ echo("!");
 echo("@");
 		include($action_file);
 	}
+}else{
+	echo($CloudMngr->class_path . DIRECTORY_SEPARATOR . "modules" . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . $module.'.php');
 }
 
 ?>
