@@ -36,7 +36,7 @@ class CloudMngr {
 		
 		if($group_id != ""){$this->setGroup($group_id);}
 		if($region_id != ""){$this->setRegion($region_id);}
-		$chk_modules = scandir($this->class_path.DIRECTORY_SEPARATOR."Modules");
+		$chk_modules = scandir($this->class_path.DIRECTORY_SEPARATOR."modules");
 		if($this->arrFull($chk_modules)){
 			foreach($chk_modules as $module){
 				if ($this->class_path . DIRECTORY_SEPARATOR . "modules" . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . $module.'.php') $this->active_modules[] = $module;
@@ -106,10 +106,14 @@ class CloudMngr {
 
 	function setGroup($group_id){
 		$this->group_id = $group_id;
+		if($this->_group) $this->_group->setGroup($group_id);
+		if($this->_region) $this->_region->setGroup($group_id);
 	}
 
 	function setRegion($region_id){
 		$this->region_id = $region_id;
+		if($this->_group) $this->_group->setRegion($region_id);
+		if($this->_region) $this->_region->setRegion($region_id);
 	}
 
 	function _error($message, $response=-1, $type="notice"){
