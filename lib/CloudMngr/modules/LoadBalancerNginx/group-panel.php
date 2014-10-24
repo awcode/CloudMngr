@@ -1,6 +1,6 @@
 <?php
 $group = $this->group()->getGroup();
-$load = $this->modules($module)->getLoadBalancer();
+$load = $this->getLoadBalancer();
 $regions = $this->region()->getAllRegions();
 ?>					<div class="span6">
                             <!-- block -->
