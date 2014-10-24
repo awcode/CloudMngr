@@ -38,6 +38,7 @@ class CloudMngrApachePHPServer extends CloudMngrBaseModule{
 		foreach($groups as $id => $group){
 			$this->setGroup($id);
 			$data = $this->getData();
+			print_r($data)
 			if($this->arrFull($this->data_arr['regions'][$this->region_id]['instances'])) $cnt += count($region['instances']);
 		}
 		$this->setGroup($group_id);
