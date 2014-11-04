@@ -50,7 +50,7 @@ $this_arr = $mod->getData();
                             <!-- block -->
                             <div class="block">
                                 <div class="navbar navbar-inner block-header">
-                                    <div class="muted pull-left"> <?=$group['name']?> - <?=$mod->getName?> setup</div>
+                                    <div class="muted pull-left"> <?=$group['name']?> - <?=$mod->getName()?> setup</div>
                                     <div class="pull-right"><span class="badge badge-info">1,234</span>
 
                                     </div>
