@@ -131,8 +131,7 @@ class CloudMngrServerModule extends CloudMngrBaseModule{
 
 				$this->instance()->setInstanceTags(array($instance['InstanceId'])
 				, array(
-					array('Key'=>'Name', 'Value'=>'Web Server'),
-					array('Key'=>'cloudMngrRole', 'Value'=>'web'),
+					array('Key'=>'Name', 'Value'=>$this->module_name),
 					array('Key'=>'cloudMngrModule', 'Value'=>$this->module_name)
 				));
 
