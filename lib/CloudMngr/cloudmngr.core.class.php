@@ -34,6 +34,7 @@ class CloudMngr {
 		
 		include_once($this->class_path . DIRECTORY_SEPARATOR . 'cloudmngr.basemodule.class.php');
 		include_once($this->class_path . DIRECTORY_SEPARATOR . 'cloudmngr.servermodule.class.php');
+		include_once($this->class_path . DIRECTORY_SEPARATOR . 'cloudmngr.websitemodule.class.php');
 		
 		if($group_id != ""){$this->setGroup($group_id);}
 		if($region_id != ""){$this->setRegion($region_id);}

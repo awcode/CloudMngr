@@ -1,4 +1,4 @@
-<?
+<?php
 $CloudMngr->setGroup($_GET['id']);
 
 $group = $CloudMngr->group()->getGroup();
@@ -27,10 +27,10 @@ $this_arr = $mod->getData();
 	                                    <i class="icon-chevron-left hide-sidebar"><a href='#' title="Hide Sidebar" rel='tooltip'>&nbsp;</a></i>
 	                                    <i class="icon-chevron-right show-sidebar" style="display:none;"><a href='#' title="Show Sidebar" rel='tooltip'>&nbsp;</a></i>
 	                                    <li>
-	                                        <a href="/?page=groups">Groups</a> <span class="divider">/</span>	
+	                                        <a href="?page=groups">Groups</a> <span class="divider">/</span>	
 	                                    </li>
 	                                    <li>
-	                                        <a href="/?page=group&id=<?=$CloudMngr->group()->getId()?>"><?=$CloudMngr->group()->getName()?></a> <span class="divider">/</span>	
+	                                        <a href="?page=group&id=<?=$CloudMngr->group()->getId()?>"><?=$CloudMngr->group()->getName()?></a> <span class="divider">/</span>	
 	                                    </li>
 	                                    <li class="active"><?=$mod->getName()?></li>
 	                                </ul>
@@ -50,7 +50,7 @@ $this_arr = $mod->getData();
                             <!-- block -->
                             <div class="block">
                                 <div class="navbar navbar-inner block-header">
-                                    <div class="muted pull-left"> <?=$group['name']?> - <?=$mod->getName()?> setup</div>
+                                    <div class="muted pull-left"> <?=$group['name']?> - <?=$mod->getDisplayName()?> setup</div>
                                     <div class="pull-right"><span class="badge badge-info">1,234</span>
 
                                     </div>
@@ -65,7 +65,7 @@ $this_arr = $mod->getData();
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td><textarea name="config"><?=$website['config']?></textarea></td>
+                                                <td colspan="2"><textarea name="config"><?=$website['config']?></textarea></td>
                                                 <td><input type="text" name="init" value="<?=$website['init']?>"></td>
                                             </tr>
                                         </tbody>

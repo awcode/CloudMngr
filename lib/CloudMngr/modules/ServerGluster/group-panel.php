@@ -14,7 +14,7 @@ foreach($group['regions'] as $index=>$id){
                                     <div class="pull-right">
 					<span id="toggle<?=$this->getName()?>" style="display:none"><select id="launch<?=$this->getName()?>Region"><?=$regions_select?></select><input type="button" id="launch<?=$this->getName()?>Go" value="Go"></span>
 					<span class="badge badge-info"><a href="#" id="launch<?=$this->getName()?>">Launch</a></span>
-                                    	<span class="badge badge-info"><a href="/?module=<?=$this->getName()?>&page=edit-config&id=<?=$this->group()->getId()?>">Config</a></span>
+                                    	<span class="badge badge-info"><a href="?module=<?=$this->getName()?>&page=edit-config&id=<?=$this->group()->getId()?>">Config</a></span>
                                     </div>
                                 </div>
                                 <div class="block-content collapse in">
@@ -67,7 +67,7 @@ if(!$cnt) echo("<tr><td colspan='5'>No ".$this->getDisplayName()." created</td><
 	
 		$("#launch<?=$this->getName()?>Go").click(function(){
 			$.ajax({
-				"url": "/cmd.php",
+				"url": "cmd.php",
 				"data": {
 					"group": "<?=$this->group()->getId()?>",
 					"region": $("#launch<?=$this->getName()?>Region option:selected").val(),
@@ -84,7 +84,7 @@ if(!$cnt) echo("<tr><td colspan='5'>No ".$this->getDisplayName()." created</td><
 	});
 function terminate<?=$this->getName()?>Instance(insttype, id){
 	$.ajax({
-		"url": "/cmd.php",
+		"url": "cmd.php",
 		"data": {
 			"group": "<?=$this->group()->getId()?>",
 			"region": $("#launch<?=$this->getName()?>Region option:selected").val(),

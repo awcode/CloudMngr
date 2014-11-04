@@ -4,7 +4,7 @@
  * CloudMngrMySQLServer Class
  */
 
-class CloudMngrWebsiteCustomLAMP extends CloudMngrServerModule{
+class CloudMngrWebsiteCustomLAMP extends CloudMngrWebsiteModule{
 	protected $module_display_name = "LAMP Website";
 	
 	function __construct($group_id="", $region_id=""){

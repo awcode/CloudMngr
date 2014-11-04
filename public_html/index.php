@@ -37,7 +37,7 @@ else{$page="main";}
 
 
 
-	<? 
+	<?php 
 	if($_SESSION['admin'] != ""){include("../template/temp-top.php");}
 	//[TODO] Clean path from XSS etc.
 	if($_GET['module']!=""){

@@ -64,7 +64,7 @@ class CloudMngrWebsiteModule extends CloudMngrBaseModule{
 
 	function writeArray(){
 		$this->runHooks("beforeWriteArray", $this->module_name);
-		if(!is_dir($this->base_path. "/data/".$this->module_name)){mk_dir($this->base_path. "/data/".$this->module_name);}
+		if(!is_dir($this->base_path. "/data/".$this->module_name)){mkdir($this->base_path. "/data/".$this->module_name);}
 		file_put_contents($this->base_path. "/data/".$this->module_name."/group-".$this->group_id, json_encode($this->data_arr, 128));
 		$this->runHooks("afterWriteArray", $this->module_name);
 	}
@@ -90,7 +90,8 @@ class CloudMngrWebsiteModule extends CloudMngrBaseModule{
 	function saveConfig(){
 		$this->runHooks("beforeSaveConfig", $this->module_name);
 		$this->loadByGroup();
-		if(! is_array($this->data_arr)) return $this->_error("Invalid ".$this->module_display_name." Array");
+
+		if(! is_array($this->data_arr)) $this->data_arr = array();
 
 		$this->data_arr['website-default']['init'] = $_POST['init'];
 		$this->data_arr['website-default']['config'] = $_POST['config'];

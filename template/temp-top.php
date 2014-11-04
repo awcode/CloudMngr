@@ -15,7 +15,7 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a tabindex="-1" href="/?logout=1">Logout</a>
+                                        <a tabindex="-1" href="?logout=1">Logout</a>
                                     </li>
                                 </ul>
                             </li>
@@ -25,7 +25,7 @@
                                 <a href="#">Dashboard</a>
                             </li>
                             <li class="dropdown">
-                                <a href="/?page=regions" data-toggle="dropdown" class="dropdown-toggle">Regions <b class="caret"></b>
+                                <a href="?page=regions" data-toggle="dropdown" class="dropdown-toggle">Regions <b class="caret"></b>
 
                                 </a>
                                 <ul class="dropdown-menu" id="menu1">
@@ -39,7 +39,7 @@
 	foreach($regions as $key=>$region){
 ?>
                                     <li>
-                                        <a href="/?page=region&id=<?=$key?>"><?=$region['name']?></a>
+                                        <a href="?page=region&id=<?=$key?>"><?=$region['name']?></a>
                                     </li>
 <?php
 }
@@ -47,12 +47,12 @@
                                 </ul>
                             </li>
                             <li class="dropdown">
-                                <a href="/?page=groups" data-toggle="dropdown" class="dropdown-toggle">Groups <b class="caret"></b>
+                                <a href="?page=groups" data-toggle="dropdown" class="dropdown-toggle">Groups <b class="caret"></b>
 
                                 </a>
                                 <ul class="dropdown-menu" id="menu1">
                                     <li>
-                                        <a href="/?page=groups">View All</i></a>
+                                        <a href="?page=groups">View All</i></a>
                                         
                                     </li>
 				    <li class="divider"></li>
@@ -61,7 +61,7 @@
 	foreach($groups as $key=>$group){
 ?>
                                     <li>
-                                        <a href="/?page=group&id=<?=$key?>"><?=$group['name']?></a>
+                                        <a href="?page=group&id=<?=$key?>"><?=$group['name']?></a>
                                     </li>
 <?php
 }
