@@ -7,6 +7,7 @@
 class CloudMngrWebsiteModule extends CloudMngrBaseModule{
 	private $data_arr;
 	protected $module_display_name = "";
+	protected $module_type = "Website";
 	
 	function __construct($group_id="", $region_id=""){
 		parent::__construct($group_id, $region_id);

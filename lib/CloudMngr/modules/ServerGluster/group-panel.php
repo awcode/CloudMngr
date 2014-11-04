@@ -10,7 +10,7 @@ foreach($group['regions'] as $index=>$id){
                             <!-- block -->
                             <div class="block">
                                 <div class="navbar navbar-inner block-header">
-                                    <div class="muted pull-left"><?=$group['name']?> - <?=$this->getDisplayName()?></div>
+                                    <div class="muted pull-left"><?=$group['name']?> - <?=$this->getModuleType()?> - <?=$this->getDisplayName()?></div>
                                     <div class="pull-right">
 					<span id="toggle<?=$this->getName()?>" style="display:none"><select id="launch<?=$this->getName()?>Region"><?=$regions_select?></select><input type="button" id="launch<?=$this->getName()?>Go" value="Go"></span>
 					<span class="badge badge-info"><a href="#" id="launch<?=$this->getName()?>">Launch</a></span>

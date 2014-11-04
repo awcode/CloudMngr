@@ -7,6 +7,7 @@
 class CloudMngrServerModule extends CloudMngrBaseModule{
 	private $data_arr;
 	protected $module_display_name = "";
+	protected $module_type = "Server";
 	
 	function __construct($group_id="", $region_id=""){
 		parent::__construct($group_id, $region_id);

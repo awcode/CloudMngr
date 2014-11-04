@@ -9,6 +9,7 @@ class CloudMngrBaseModule extends CloudMngr{
 	protected $module_name;
 	protected $module_display_name;
 	protected $module_path;
+	protected $module_type = "Module";
 	
 
 	function __construct($group_id="", $region_id=""){
@@ -20,6 +21,10 @@ class CloudMngrBaseModule extends CloudMngr{
 	}
 	public function getDisplayName(){
 		return $this->module_display_name;
+	}
+	
+	public function getModuleType(){
+		return $this->module_type;
 	}
 
 	public function getTotalCount(){

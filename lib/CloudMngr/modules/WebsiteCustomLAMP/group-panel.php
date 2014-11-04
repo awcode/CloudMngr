@@ -10,10 +10,10 @@ foreach($group['regions'] as $index=>$id){
                             <!-- block -->
                             <div class="block">
                                 <div class="navbar navbar-inner block-header">
-                                    <div class="muted pull-left"><?=$group['name']?> - <?=$this->getDisplayName()?></div>
+                                    <div class="muted pull-left"><?=$group['name']?> - <?=$this->getModuleType()?> - <?=$this->getDisplayName()?></div>
                                     <div class="pull-right">
 					<span id="toggle<?=$this->getName()?>" style="display:none"><select id="launch<?=$this->getName()?>Region"><?=$regions_select?></select><input type="button" id="launch<?=$this->getName()?>Go" value="Go"></span>
-					<span class="badge badge-info"><a href="#" id="launch<?=$this->getName()?>">Launch</a></span>
+					<span class="badge badge-info"><a href="#" id="launch<?=$this->getName()?>">Add</a></span>
                                     	<span class="badge badge-info"><a href="?module=<?=$this->getName()?>&page=edit-config&id=<?=$this->group()->getId()?>">Config</a></span>
                                     </div>
                                 </div>
@@ -22,9 +22,9 @@ foreach($group['regions'] as $index=>$id){
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
-                                                <th>Region</th>
-                                                <th>Size</th>
-                                                <th>IP</th>
+                                                <th>URL</th>
+                                                <th>User</th>
+                                                <th>Home</th>
                                                 <th>Health</th>
                                                 <th>Action</th>
                                             </tr>
@@ -32,21 +32,19 @@ foreach($group['regions'] as $index=>$id){
                                         <tbody>
 <?php
 $cnt = 0;
-foreach($group['regions'] as $index=>$id){
-	if(count($this_arr['regions'][$id]['instances']) > 0){
-		foreach($this_arr['regions'][$id]['instances'] as $inst_id => $inst){
+if(count($this_arr['websites']) > 0){
+	foreach($group['websites'] as $web_id=>$web){
 			$cnt++;
 ?>
                                             <tr>
-                                                <td><?=$inst_id?></td>
-                                                <td><?=$regions[$id]['name']?></td>
-                                                <td><?=$inst['type']?></td>
-                                                <td><?=$inst['ip']?></td>
+                                                <td><?=$web_id?></td>
+                                                <td><?=$web['url']?></td>
+                                                <td><?=$inst['user']?></td>
+                                                <td><?=$inst['home']?></td>
                                                 <td>100%</td>
                                                 <td><a href='#' onclick="terminate<?=$this->getName()?>Instance('<?=$this->getName()?>', '<?=$inst_id?>'); return false;">Del</a></td>
                                             </tr>
 <?php
-		}
 	}
 } 
 if(!$cnt) echo("<tr><td colspan='5'>No ".$this->getDisplayName()." created</td></tr>");
