@@ -54,7 +54,7 @@ foreach($group['regions'] as $index=>$id){
                             <!-- block -->
                             <div class="block">
                                 <div class="navbar navbar-inner block-header">
-                                    <div class="muted pull-left"><?=$regions[$index]['name']?> <?=$group['name']?> - <?=$mod->getDisplayName()?> setup</div>
+                                    <div class="muted pull-left"><?=$regions[$id]['name']?> <?=$group['name']?> - <?=$mod->getDisplayName()?> setup</div>
                                     <div class="pull-right"><span class="badge badge-info">1,234</span>
 
                                     </div>
