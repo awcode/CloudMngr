@@ -77,10 +77,6 @@ $this_arr = $mod->getData();
                             </div>
                             <!-- /block -->
                         </div>
-<?php
-	if($odd == 2){$odd = 0; echo('</div><div class="row-fluid">');}
-}
-?>	
 
 		</div>
 		<input type="submit" name="update" value="Save All">
