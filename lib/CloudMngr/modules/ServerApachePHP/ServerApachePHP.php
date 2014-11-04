@@ -4,7 +4,7 @@
  * CloudMngrApachePHPServer Class
  */
 
-class CloudMngrApachePHPServer extends CloudMngrServerModule{
+class CloudMngrServerApachePHP extends CloudMngrServerModule{
 	private $data_arr;
 	protected $module_display_name = "Web Server (Apache + PHP)";
 	
