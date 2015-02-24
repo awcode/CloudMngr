@@ -11,9 +11,8 @@ foreach($group['regions'] as $index=>$id){
                             <div class="block">
                                 <div class="navbar navbar-inner block-header">
                                     <div class="muted pull-left"><?=$group['name']?> - <?=$this->getModuleType()?> - <?=$this->getDisplayName()?></div>
-                                    <div class="pull-right"><form action="?module=<?=$this->getName()?>&page=add-new&id=<?=$this->group()->getId()?>" method="post">
-					<span id="toggle<?=$this->getName()?>" style="display:none"><select name="new_region" id="add<?=$this->getName()?>Region"><?=$regions_select?></select><input type="button" id="add<?=$this->getName()?>Go" value="Go"></span></form>
-					<span class="badge badge-info"><a href="#" id="add<?=$this->getName()?>">Add</a></span>
+                                    <div class="pull-right">
+                                    	<span class="badge badge-info"><a href="?module=<?=$this->getName()?>&page=add-new&id=<?=$this->group()->getId()?>" id="add<?=$this->getName()?>">Add</a></span>
                                     	<span class="badge badge-info"><a href="?module=<?=$this->getName()?>&page=edit-config&id=<?=$this->group()->getId()?>">Config</a></span>
                                     </div>
                                 </div>
@@ -59,9 +58,9 @@ if(!$cnt) echo("<tr><td colspan='5'>No ".$this->getDisplayName()." created</td><
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#add<?=$this->getName()?>").click(function(){
-			$("#toggle<?=$this->getName()?>").toggle();
-		});
+		//$("#add<?=$this->getName()?>").click(function(){
+			//$("#toggle<?=$this->getName()?>").toggle();
+		//});
 	/*
 		$("#add<?=$this->getName()?>Go").click(function(){
 			$.ajax({
