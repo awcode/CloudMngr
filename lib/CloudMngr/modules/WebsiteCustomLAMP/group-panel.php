@@ -33,16 +33,16 @@ foreach($group['regions'] as $index=>$id){
 <?php
 $cnt = 0;
 if(count($this_arr['websites']) > 0){
-	foreach($group['websites'] as $web_id=>$web){
+	foreach($group['websites'] as $web_key=>$web){
 			$cnt++;
 ?>
                                             <tr>
-                                                <td><?=$web_id?></td>
-                                                <td><?=$web['url']?></td>
-                                                <td><?=$inst['user']?></td>
-                                                <td><?=$inst['home']?></td>
+                                                <td><?=$web_key?></td>
+                                                <td><?=$web['hostname']?></td>
+                                                <td><?=$web['user']?></td>
+                                                <td><?=$web['directory']?></td>
                                                 <td>100%</td>
-                                                <td><a href='#' onclick="remove<?=$this->getName()?>Instance('<?=$this->getName()?>', '<?=$inst_id?>'); return false;">Del</a></td>
+                                                <td><a href='#' onclick="remove<?=$this->getName()?>Instance('<?=$this->getName()?>', '<?=$web_key?>'); return false;">Del</a></td>
                                             </tr>
 <?php
 	}

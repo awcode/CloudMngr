@@ -59,22 +59,6 @@ $this_arr = $mod->getData();
                                     <table class="table table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Hostname</th>
-                                                <th>User</th>
-                                                <th>Folder</th>
-                                                <th>IP</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td><input type="text" name="hostname" value="<?=$website['hostname']?>"></td>
-                                                <td><input type="text" name="user" value="<?=$website['user']?>"></td>
-                                                <td><input type="text" name="folder" value="<?=$website['folder']?>"></td>
-                                                <td><input type="text" name="ip" value="<?=$website['ip']?>"></td>
-                                            </tr>
-                                        </tbody>
-                                         <thead>
-                                            <tr>
                                                 <th>Default Config</th>
                                                 <th>Init Script</th>
                                             </tr>

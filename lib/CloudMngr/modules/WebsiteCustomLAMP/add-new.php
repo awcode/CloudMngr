@@ -62,13 +62,14 @@ $this_arr = $mod->getData();
                                                 <th>URL</th>
                                                 <th>User</th>
                                                 <th>Directory</th>
+                                                <th>IP</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td><input type="text" name="new_web_url" id="new_web_url"></td>
-                                                <td><input type="text" name="new_web_user" id="new_web_user"></td>
-                                                <td><input type="text" name="new_web_directory" id="new_web_directory"></td>
+                                                <td><input type="text" name="hostname" id="hostname"></td>
+                                                <td><input type="text" name="user" id="user"></td>
+                                                <td><input type="text" name="directory" id="directory"></td>
                                             </tr>
                                         </tbody>
                                         

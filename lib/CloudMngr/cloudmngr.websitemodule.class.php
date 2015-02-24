@@ -94,10 +94,6 @@ class CloudMngrWebsiteModule extends CloudMngrBaseModule{
 
 		if(! is_array($this->data_arr)) $this->data_arr = array();
 
-		$this->data_arr['website-default']['hostname'] = $_POST['hostname'];
-		$this->data_arr['website-default']['user'] = $_POST['user'];
-		$this->data_arr['website-default']['folder'] = $_POST['folder'];
-		$this->data_arr['website-default']['ip'] = $_POST['ip'];
 		$this->data_arr['website-default']['init'] = $_POST['init'];
 		$this->data_arr['website-default']['config'] = $_POST['config'];
 
@@ -109,6 +105,15 @@ class CloudMngrWebsiteModule extends CloudMngrBaseModule{
 
 	function addNew($config){
 		$this->runHooks("beforeAddNewWebsite", $this->module_name);
+		
+		$web_key = preg_replace("/[^a-zA-Z0-9]+/", "", $_POST['hostname']);
+		$append = "";
+		while(isset($this->data_arr['websites'][$web_key.$append])){$append +=1;}
+		$web_key .= $append;
+		
+		$this->data_arr['websites'][$web_key]['hostname'] = $_POST['hostname'];
+		$this->data_arr['websites'][$web_key]['user'] = $_POST['user'];
+		$this->data_arr['websites'][$web_key]['directory'] = $_POST['directory'];
 		
 		
 		$this->runHooks("afterAddNewWebsite", $this->module_name);
