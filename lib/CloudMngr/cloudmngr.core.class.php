@@ -147,5 +147,21 @@ class CloudMngr {
 		if(is_array($array) && count($array)) return true;
 		return false;
 	}
+	
+	function redirect($url, $type="302"){
+		if($type == "301"){header("HTTP/1.1 301 Moved Permanently");}
+		
+		if(strpos("http", $url) !== false){
+			$url = (($this->isSecure())?"https://":"http://").$_SERVER['HTTP_HOST'].$url;
+		}
+		header("Location: ".$url);
+		die();
+	}
+	
+	function isSecure() {
+	  return
+		(!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+		|| $_SERVER['SERVER_PORT'] == 443;
+	}
 }
 ?>

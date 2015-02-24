@@ -117,6 +117,7 @@ class CloudMngrWebsiteModule extends CloudMngrBaseModule{
 		
 		
 		$this->runHooks("afterAddNewWebsite", $this->module_name);
+		$this->redirect("?page=group&id=".$_GET['group']);
 	}
 
 	function modifyConfig($config){

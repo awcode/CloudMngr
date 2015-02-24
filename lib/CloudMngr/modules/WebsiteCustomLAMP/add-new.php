@@ -7,7 +7,7 @@ $group = $CloudMngr->group()->getGroup();
 $mod = $CloudMngr->module($_GET['module']);
 
 if($_POST['update'] != ""){
-	$mod->saveConfig();
+	$mod->addNew();
 }
 
 
@@ -81,8 +81,9 @@ $this_arr = $mod->getData();
                             <!-- /block -->
                         </div>
 
-		</div>
-		<input type="submit" name="update" value="Save All">
+			</div>
+			<input type="hidden" name="group" id="<?=$_GET['id']?>">
+			<input type="submit" name="update" value="Add Website">
 		</form>
 
 <script src="assets/scripts.js"></script>
