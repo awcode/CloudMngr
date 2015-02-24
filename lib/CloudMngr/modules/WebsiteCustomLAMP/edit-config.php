@@ -46,7 +46,7 @@ $this_arr = $mod->getData();
 	$website = $this_arr['website-default'];
 
 ?>
- 			<div class="span6">
+ 			<div class="span12">
                             <!-- block -->
                             <div class="block">
                                 <div class="navbar navbar-inner block-header">
@@ -59,17 +59,33 @@ $this_arr = $mod->getData();
                                     <table class="table table-striped">
                                         <thead>
                                             <tr>
-                                                <th colspan="2">Default Config</th>
+                                                <th>Hostname</th>
+                                                <th>User</th>
+                                                <th>Folder</th>
+                                                <th>IP</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><input type="text" name="hostname" value="<?=$website['hostname']?>"></td>
+                                                <td><input type="text" name="user" value="<?=$website['user']?>"></td>
+                                                <td><input type="text" name="folder" value="<?=$website['folder']?>"></td>
+                                                <td><input type="text" name="ip" value="<?=$website['ip']?>"></td>
+                                            </tr>
+                                        </tbody>
+                                         <thead>
+                                            <tr>
+                                                <th>Default Config</th>
                                                 <th>Init Script</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td colspan="2"><textarea name="config"><?=$website['config']?></textarea></td>
+                                                <td><textarea name="config"><?=$website['config']?></textarea></td>
                                                 <td><input type="text" name="init" value="<?=$website['init']?>"></td>
                                             </tr>
                                         </tbody>
-                                        
+                                       
                                     </table>
 				    <!--<a href="#" onclick="$(this).next('textarea').toggle(); return false;">View config</a>
 				    <textarea name="config-<?=$index?>" style="display:none; width:95%; height: 250px;"><?=$website['config']?></textarea>-->

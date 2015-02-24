@@ -94,6 +94,10 @@ class CloudMngrWebsiteModule extends CloudMngrBaseModule{
 
 		if(! is_array($this->data_arr)) $this->data_arr = array();
 
+		$this->data_arr['website-default']['hostname'] = $_POST['hostname'];
+		$this->data_arr['website-default']['user'] = $_POST['user'];
+		$this->data_arr['website-default']['folder'] = $_POST['folder'];
+		$this->data_arr['website-default']['ip'] = $_POST['ip'];
 		$this->data_arr['website-default']['init'] = $_POST['init'];
 		$this->data_arr['website-default']['config'] = $_POST['config'];
 

@@ -11,9 +11,9 @@ foreach($group['regions'] as $index=>$id){
                             <div class="block">
                                 <div class="navbar navbar-inner block-header">
                                     <div class="muted pull-left"><?=$group['name']?> - <?=$this->getModuleType()?> - <?=$this->getDisplayName()?></div>
-                                    <div class="pull-right">
-					<span id="toggle<?=$this->getName()?>" style="display:none"><select id="launch<?=$this->getName()?>Region"><?=$regions_select?></select><input type="button" id="launch<?=$this->getName()?>Go" value="Go"></span>
-					<span class="badge badge-info"><a href="#" id="launch<?=$this->getName()?>">Add</a></span>
+                                    <div class="pull-right"><form action="?module=<?=$this->getName()?>&page=add-new&id=<?=$this->group()->getId()?>" method="post">
+					<span id="toggle<?=$this->getName()?>" style="display:none"><select name="new_region" id="add<?=$this->getName()?>Region"><?=$regions_select?></select><input type="button" id="add<?=$this->getName()?>Go" value="Go"></span></form>
+					<span class="badge badge-info"><a href="#" id="add<?=$this->getName()?>">Add</a></span>
                                     	<span class="badge badge-info"><a href="?module=<?=$this->getName()?>&page=edit-config&id=<?=$this->group()->getId()?>">Config</a></span>
                                     </div>
                                 </div>
@@ -42,7 +42,7 @@ if(count($this_arr['websites']) > 0){
                                                 <td><?=$inst['user']?></td>
                                                 <td><?=$inst['home']?></td>
                                                 <td>100%</td>
-                                                <td><a href='#' onclick="terminate<?=$this->getName()?>Instance('<?=$this->getName()?>', '<?=$inst_id?>'); return false;">Del</a></td>
+                                                <td><a href='#' onclick="remove<?=$this->getName()?>Instance('<?=$this->getName()?>', '<?=$inst_id?>'); return false;">Del</a></td>
                                             </tr>
 <?php
 	}
@@ -59,18 +59,18 @@ if(!$cnt) echo("<tr><td colspan='5'>No ".$this->getDisplayName()." created</td><
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#launch<?=$this->getName()?>").click(function(){
+		$("#add<?=$this->getName()?>").click(function(){
 			$("#toggle<?=$this->getName()?>").toggle();
 		});
-	
-		$("#launch<?=$this->getName()?>Go").click(function(){
+	/*
+		$("#add<?=$this->getName()?>Go").click(function(){
 			$.ajax({
 				"url": "cmd.php",
 				"data": {
 					"group": "<?=$this->group()->getId()?>",
-					"region": $("#launch<?=$this->getName()?>Region option:selected").val(),
+					"region": $("#add<?=$this->getName()?>Region option:selected").val(),
 					"module": "<?=$this->getName()?>",
-					"action": "launch"
+					"action": "add"
 				},
 				"method": "post",
 				"success": function(data){
@@ -79,8 +79,9 @@ if(!$cnt) echo("<tr><td colspan='5'>No ".$this->getDisplayName()." created</td><
 				}
 			});
 		});
+	*/
 	});
-function terminate<?=$this->getName()?>Instance(insttype, id){
+function remove<?=$this->getName()?>Instance(insttype, id){
 	$.ajax({
 		"url": "cmd.php",
 		"data": {
@@ -89,7 +90,7 @@ function terminate<?=$this->getName()?>Instance(insttype, id){
 			"type": insttype,
 			"instance_id": id,
 			"module": "<?=$this->getName()?>",
-			"action": "terminate"
+			"action": "remove"
 		},
 		"method": "post",
 		"success": function(data){
