@@ -106,14 +106,14 @@ class CloudMngrWebsiteModule extends CloudMngrBaseModule{
 	function addNew($config){
 		$this->runHooks("beforeAddNewWebsite", $this->module_name);
 		
-		$web_key = preg_replace("/[^a-zA-Z0-9]+/", "", $_POST['hostname']);
+		$web_key = preg_replace("/[^a-zA-Z0-9]+/", "", $config['hostname']);
 		$append = "";
 		while(isset($this->data_arr['websites'][$web_key.$append])){$append +=1;}
 		$web_key .= $append;
 		
-		$this->data_arr['websites'][$web_key]['hostname'] = $_POST['hostname'];
-		$this->data_arr['websites'][$web_key]['user'] = $_POST['user'];
-		$this->data_arr['websites'][$web_key]['directory'] = $_POST['directory'];
+		$this->data_arr['websites'][$web_key]['hostname'] = $config['hostname'];
+		$this->data_arr['websites'][$web_key]['user'] = $config['user'];
+		$this->data_arr['websites'][$web_key]['directory'] = $config['directory'];
 		
 		
 		$this->runHooks("afterAddNewWebsite", $this->module_name);

@@ -7,7 +7,7 @@ $group = $CloudMngr->group()->getGroup();
 $mod = $CloudMngr->module($_GET['module']);
 
 if($_POST['update'] != ""){
-	$mod->addNew();
+	$mod->addNew($_POST);
 }
 
 
