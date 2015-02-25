@@ -42,8 +42,10 @@ class CloudMngr {
 		if($this->arrFull($chk_modules)){
 			foreach($chk_modules as $module){
 				if (file_exists($this->class_path . DIRECTORY_SEPARATOR . "modules" . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . $module.'.php')){
-					$this->active_modules[] = $module;
-				} 
+					if (!file_exists($this->class_path . DIRECTORY_SEPARATOR . "modules" . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . 'disable')){
+						$this->active_modules[] = $module;
+					}
+				}
 			}
 		}
 	}
@@ -132,6 +134,7 @@ class CloudMngr {
 			
 			$this->_modules[$module]->module_name = $module;
 			$this->_modules[$module]->module_path = $this->class_path . DIRECTORY_SEPARATOR . "modules" . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR;
+			$this->_modules[$module]->module_default_path = $this->class_path . DIRECTORY_SEPARATOR . "modules" . DIRECTORY_SEPARATOR . "Default".$this->_modules[$module]->module_type . DIRECTORY_SEPARATOR;
 		}
 		return $this->_modules[$module];	
 	}

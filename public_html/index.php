@@ -41,7 +41,8 @@ else{$page="main";}
 	if($_SESSION['admin'] != ""){include("../template/temp-top.php");}
 	//[TODO] Clean path from XSS etc.
 	if($_GET['module']!=""){
-		include($CloudMngr->class_path."/modules/".$_GET['module']."/".$page.".php");
+		$mod = $CloudMngr->module($_GET['module']);
+		$mod->getModulePage($page);
 	}else{
 		include($CloudMngr->class_path."/content/".$page.".php");
 	}

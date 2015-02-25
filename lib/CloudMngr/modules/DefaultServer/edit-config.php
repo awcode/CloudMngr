@@ -1,18 +1,17 @@
 <?php
-$CloudMngr->setGroup($_GET['id']);
+$this->setGroup($_GET['id']);
 
-$group = $CloudMngr->group()->getGroup();
-$regions = $CloudMngr->region()->getAllRegions();
+$group = $this->group()->getGroup();
+$regions = $this->region()->getAllRegions();
 
-$mod = $CloudMngr->module($_GET['module']);
 
 if($_POST['update'] != ""){
-	$mod->saveConfig();
+	$this->saveConfig();
 }
 
 
 
-$this_arr = $mod->getData();
+$this_arr = $this->getData();
 
 ?>
 
@@ -30,9 +29,9 @@ $this_arr = $mod->getData();
 	                                        <a href="?page=groups">Groups</a> <span class="divider">/</span>	
 	                                    </li>
 	                                    <li>
-	                                        <a href="?page=group&id=<?=$CloudMngr->group()->getId()?>"><?=$CloudMngr->group()->getName()?></a> <span class="divider">/</span>	
+	                                        <a href="?page=group&id=<?=$this->group()->getId()?>"><?=$this->group()->getName()?></a> <span class="divider">/</span>	
 	                                    </li>
-	                                    <li class="active"><?=$mod->getName()?></li>
+	                                    <li class="active"><?=$this->getName()?></li>
 	                                </ul>
                             	</div>
                         	</div>
@@ -54,7 +53,7 @@ foreach($group['regions'] as $index=>$id){
                             <!-- block -->
                             <div class="block">
                                 <div class="navbar navbar-inner block-header">
-                                    <div class="muted pull-left"><?=$regions[$id]['name']?> <?=$group['name']?> - <?=$mod->getDisplayName()?> setup</div>
+                                    <div class="muted pull-left"><?=$regions[$id]['name']?> <?=$group['name']?> - <?=$this->getDisplayName()?> setup</div>
                                     <div class="pull-right"><span class="badge badge-info">1,234</span>
 
                                     </div>

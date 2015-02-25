@@ -1,12 +1,16 @@
 <?php
-$CloudMngr->setGroup($_GET['id']);
+$this->setGroup($_GET['id']);
 
-$group = $CloudMngr->group()->getGroup();
-//$regions = $CloudMngr->region()->getAllRegions();
+$group = $this->group()->getGroup();
+//$regions = $this->region()->getAllRegions();
 
-$mod = $CloudMngr->module($_GET['module']);
+if($_POST['update'] != ""){
+	$this->saveConfig();
+}
 
-$this_arr = $mod->getData();
+
+
+$this_arr = $this->getData();
 
 ?>
 
@@ -24,15 +28,15 @@ $this_arr = $mod->getData();
 	                                        <a href="?page=groups">Groups</a> <span class="divider">/</span>	
 	                                    </li>
 	                                    <li>
-	                                        <a href="?page=group&id=<?=$CloudMngr->group()->getId()?>"><?=$CloudMngr->group()->getName()?></a> <span class="divider">/</span>	
+	                                        <a href="?page=group&id=<?=$this->group()->getId()?>"><?=$this->group()->getName()?></a> <span class="divider">/</span>	
 	                                    </li>
-	                                    <li class="active"><?=$mod->getName()?></li>
+	                                    <li class="active"><?=$this->getName()?></li>
 	                                </ul>
                             	</div>
                         	</div>
                     	</div>
  		    </div>
-		<form action="cmd.php" method="post">
+		<form action="#" method="post">
                     <div class="row-fluid">
 
 <?php
@@ -44,7 +48,7 @@ $this_arr = $mod->getData();
                             <!-- block -->
                             <div class="block">
                                 <div class="navbar navbar-inner block-header">
-                                    <div class="muted pull-left"> <?=$group['name']?> - <?=$mod->getDisplayName()?> setup</div>
+                                    <div class="muted pull-left"> <?=$group['name']?> - <?=$this->getDisplayName()?> setup</div>
                                     <div class="pull-right"><span class="badge badge-info">1,234</span>
 
                                     </div>
@@ -53,20 +57,17 @@ $this_arr = $mod->getData();
                                     <table class="table table-striped">
                                         <thead>
                                             <tr>
-                                                <th>URL</th>
-                                                <th>User</th>
-                                                <th>Directory</th>
-                                                <th>IP</th>
+                                                <th>Default Config</th>
+                                                <th>Init Script</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td><input type="text" name="hostname" id="hostname"></td>
-                                                <td><input type="text" name="user" id="user"></td>
-                                                <td><input type="text" name="directory" id="directory"></td>
+                                                <td><textarea name="config"><?=$website['config']?></textarea></td>
+                                                <td><input type="text" name="init" value="<?=$website['init']?>"></td>
                                             </tr>
                                         </tbody>
-                                        
+                                       
                                     </table>
 				    <!--<a href="#" onclick="$(this).next('textarea').toggle(); return false;">View config</a>
 				    <textarea name="config-<?=$index?>" style="display:none; width:95%; height: 250px;"><?=$website['config']?></textarea>-->
@@ -75,11 +76,8 @@ $this_arr = $mod->getData();
                             <!-- /block -->
                         </div>
 
-			</div>
-			<input type="hidden" name="group" id="<?=$_GET['id']?>">
-			<input type="hidden" name="module" id="<?=$_GET['module']?>">
-			<input type="hidden" name="action" id="add">
-			<input type="submit" name="update" value="Add Website">
+		</div>
+		<input type="submit" name="update" value="Save All">
 		</form>
 
 <script src="assets/scripts.js"></script>

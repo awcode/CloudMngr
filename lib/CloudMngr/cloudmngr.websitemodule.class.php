@@ -110,14 +110,14 @@ class CloudMngrWebsiteModule extends CloudMngrBaseModule{
 		$append = "";
 		while(isset($this->data_arr['websites'][$web_key.$append])){$append +=1;}
 		$web_key .= $append;
+		$this->data_arr['websites'][$this->module_display_name][$web_key]['hostname'] = $config['hostname'];
+		$this->data_arr['websites'][$this->module_display_name][$web_key]['user'] = $config['user'];
+		$this->data_arr['websites'][$this->module_display_name][$web_key]['directory'] = $config['directory'];
 		
-		$this->data_arr['websites'][$web_key]['hostname'] = $config['hostname'];
-		$this->data_arr['websites'][$web_key]['user'] = $config['user'];
-		$this->data_arr['websites'][$web_key]['directory'] = $config['directory'];
-		
+		$this->writeArray();
 		
 		$this->runHooks("afterAddNewWebsite", $this->module_name);
-		$this->redirect("?page=group&id=".$_GET['group']);
+		$this->redirect("/?page=group&id=".$config['group']);
 	}
 
 	function modifyConfig($config){
@@ -127,9 +127,13 @@ class CloudMngrWebsiteModule extends CloudMngrBaseModule{
 		$this->runHooks("afterModifyWebsite", $this->module_name);
 	}
 
-	function remove($instance_id){
+	function remove($web_key){
 		$this->runHooks("beforeRemoveWebsite", $this->module_name);
 
+		unset($this->data_arr['websites'][$this->module_display_name][$web_key]);
+		$this->writeArray();
+		
+		echo($this->module_display_name." Deleted");
 		
 		$this->runHooks("afterRemoveWebsite", $this->module_name);
 	}

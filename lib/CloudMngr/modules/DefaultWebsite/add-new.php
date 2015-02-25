@@ -1,16 +1,10 @@
 <?php
-$CloudMngr->setGroup($_GET['id']);
+$this->setGroup($_GET['id']);
 
-$group = $CloudMngr->group()->getGroup();
+$group = $this->group()->getGroup();
 //$regions = $CloudMngr->region()->getAllRegions();
 
-$mod = $CloudMngr->module($_GET['module']);
-
-if($_POST['update'] != ""){
-	$mod->saveConfig();
-}
-
-
+$mod = $this->module($_GET['module']);
 
 $this_arr = $mod->getData();
 
@@ -30,7 +24,7 @@ $this_arr = $mod->getData();
 	                                        <a href="?page=groups">Groups</a> <span class="divider">/</span>	
 	                                    </li>
 	                                    <li>
-	                                        <a href="?page=group&id=<?=$CloudMngr->group()->getId()?>"><?=$CloudMngr->group()->getName()?></a> <span class="divider">/</span>	
+	                                        <a href="?page=group&id=<?=$this->group()->getId()?>"><?=$this->group()->getName()?></a> <span class="divider">/</span>	
 	                                    </li>
 	                                    <li class="active"><?=$mod->getName()?></li>
 	                                </ul>
@@ -38,7 +32,7 @@ $this_arr = $mod->getData();
                         	</div>
                     	</div>
  		    </div>
-		<form action="#" method="post">
+		<form action="cmd.php" method="post">
                     <div class="row-fluid">
 
 <?php
@@ -59,27 +53,30 @@ $this_arr = $mod->getData();
                                     <table class="table table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Default Config</th>
-                                                <th>Init Script</th>
+                                                <th>URL</th>
+                                                <th>User</th>
+                                                <th>Directory</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td><textarea name="config"><?=$website['config']?></textarea></td>
-                                                <td><input type="text" name="init" value="<?=$website['init']?>"></td>
+                                                <td><input type="text" name="hostname" id="hostname"></td>
+                                                <td><input type="text" name="user" id="user"></td>
+                                                <td><input type="text" name="directory" id="directory"></td>
                                             </tr>
                                         </tbody>
-                                       
+                                        
                                     </table>
-				    <!--<a href="#" onclick="$(this).next('textarea').toggle(); return false;">View config</a>
-				    <textarea name="config-<?=$index?>" style="display:none; width:95%; height: 250px;"><?=$website['config']?></textarea>-->
                                 </div>
                             </div>
                             <!-- /block -->
                         </div>
 
-		</div>
-		<input type="submit" name="update" value="Save All">
+			</div>
+			<input type="hidden" name="group" value="<?=$_GET['id']?>">
+			<input type="hidden" name="module" value="<?=$_GET['module']?>">
+			<input type="hidden" name="action" value="add">
+			<input type="submit" name="update" value="Add Website">
 		</form>
 
 <script src="assets/scripts.js"></script>

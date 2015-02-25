@@ -9,6 +9,7 @@ class CloudMngrBaseModule extends CloudMngr{
 	protected $module_name;
 	protected $module_display_name;
 	protected $module_path;
+	protected $module_default_path;
 	protected $module_type = "Module";
 	
 
@@ -25,6 +26,11 @@ class CloudMngrBaseModule extends CloudMngr{
 	
 	public function getModuleType(){
 		return $this->module_type;
+	}
+	
+	public function getModulePage($page){
+		if(file_exists($this->module_path . DIRECTORY_SEPARATOR.$page.".php")){include($this->module_path . DIRECTORY_SEPARATOR.$page.".php");}
+		elseif(file_exists($this->module_default_path . DIRECTORY_SEPARATOR.$page.".php")){include($this->module_default_path . DIRECTORY_SEPARATOR.$page.".php");}
 	}
 
 	public function getTotalCount(){
@@ -90,5 +96,6 @@ class CloudMngrBaseModule extends CloudMngr{
 	protected function _displayGroupPanel(){
 		$module = $this->module_name;
 		if(file_exists($this->module_path . DIRECTORY_SEPARATOR ."group-panel.php")) include($this->module_path . DIRECTORY_SEPARATOR ."group-panel.php");
+		elseif(file_exists($this->module_default_path . DIRECTORY_SEPARATOR ."group-panel.php")) include($this->module_default_path . DIRECTORY_SEPARATOR ."group-panel.php");
 	}
 }

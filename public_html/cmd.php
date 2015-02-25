@@ -13,11 +13,9 @@ $CloudMngr = new CloudMngr($_GET['id']);
 $module = $_POST['module'];//{TODO input filertering
 $action = $_POST['action'];
 
-if($module != "" && file_exists($CloudMngr->class_path . DIRECTORY_SEPARATOR . "modules" . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . $module.'.php')){
-	$action_file = $CloudMngr->class_path . DIRECTORY_SEPARATOR . "modules" . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . "cmd" . DIRECTORY_SEPARATOR . $action .'.php';
-	if(file_exists($action_file)){
-		include($action_file);
-	}
+if($module != ""){
+	$mod = $CloudMngr->module($_POST['module']);
+	$mod->getModulePage("cmd" . DIRECTORY_SEPARATOR . $action);
 }
 
 ?>

@@ -1,10 +1,6 @@
 <?php
 $group = $this->group()->getGroup();
 $this_arr = $this->getData();
-$regions = $this->region()->getAllRegions();
-foreach($group['regions'] as $index=>$id){
-	$regions_select .= "<option value='".$id."'>".$regions[$id]['name']."</option>";
-}
 
 ?>					<div class="span6">
                             <!-- block -->
@@ -20,7 +16,6 @@ foreach($group['regions'] as $index=>$id){
                                     <table class="table table-striped">
                                         <thead>
                                             <tr>
-                                                <th>ID</th>
                                                 <th>URL</th>
                                                 <th>User</th>
                                                 <th>Home</th>
@@ -31,17 +26,16 @@ foreach($group['regions'] as $index=>$id){
                                         <tbody>
 <?php
 $cnt = 0;
-if(count($this_arr['websites']) > 0){
-	foreach($group['websites'] as $web_key=>$web){
+if(count($this_arr['websites'][$this->module_display_name]) > 0){
+	foreach($this_arr['websites'][$this->module_display_name] as $web_key=>$web){
 			$cnt++;
 ?>
                                             <tr>
-                                                <td><?=$web_key?></td>
                                                 <td><?=$web['hostname']?></td>
                                                 <td><?=$web['user']?></td>
                                                 <td><?=$web['directory']?></td>
                                                 <td>100%</td>
-                                                <td><a href='#' onclick="remove<?=$this->getName()?>Instance('<?=$this->getName()?>', '<?=$web_key?>'); return false;">Del</a></td>
+                                                <td><a href='#' onclick="remove<?=$this->getName()?>Website('<?=$this->getName()?>', '<?=$web_key?>'); return false;">Del</a></td>
                                             </tr>
 <?php
 	}
@@ -57,37 +51,13 @@ if(!$cnt) echo("<tr><td colspan='5'>No ".$this->getDisplayName()." created</td><
 
 
 <script type="text/javascript">
-	$(document).ready(function(){
-		//$("#add<?=$this->getName()?>").click(function(){
-			//$("#toggle<?=$this->getName()?>").toggle();
-		//});
-	/*
-		$("#add<?=$this->getName()?>Go").click(function(){
-			$.ajax({
-				"url": "cmd.php",
-				"data": {
-					"group": "<?=$this->group()->getId()?>",
-					"region": $("#add<?=$this->getName()?>Region option:selected").val(),
-					"module": "<?=$this->getName()?>",
-					"action": "add"
-				},
-				"method": "post",
-				"success": function(data){
-					alert(data);
-					window.location.reload();
-				}
-			});
-		});
-	*/
-	});
-function remove<?=$this->getName()?>Instance(insttype, id){
+function remove<?=$this->getName()?>Website(webtype, id){
 	$.ajax({
 		"url": "cmd.php",
 		"data": {
 			"group": "<?=$this->group()->getId()?>",
-			"region": $("#launch<?=$this->getName()?>Region option:selected").val(),
-			"type": insttype,
-			"instance_id": id,
+			"type": webtype,
+			"web_key": id,
 			"module": "<?=$this->getName()?>",
 			"action": "remove"
 		},
