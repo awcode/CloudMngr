@@ -7,7 +7,7 @@ if(($_POST['region'] != "") && ($_POST['group'] != "")){
 	
 	$load = $CloudMngr->module($module)->getRegion($_POST['region']);
 
-	$CloudMngr->module($module)->addNew($load);
+	$CloudMngr->module($module)->addNew($_POST);
 }
 
 ?>

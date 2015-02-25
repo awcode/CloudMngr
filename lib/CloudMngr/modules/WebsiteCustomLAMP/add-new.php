@@ -6,12 +6,6 @@ $group = $CloudMngr->group()->getGroup();
 
 $mod = $CloudMngr->module($_GET['module']);
 
-if($_POST['update'] != ""){
-	$mod->addNew($_POST);
-}
-
-
-
 $this_arr = $mod->getData();
 
 ?>
@@ -38,7 +32,7 @@ $this_arr = $mod->getData();
                         	</div>
                     	</div>
  		    </div>
-		<form action="#" method="post">
+		<form action="cmd.php" method="post">
                     <div class="row-fluid">
 
 <?php
@@ -83,6 +77,8 @@ $this_arr = $mod->getData();
 
 			</div>
 			<input type="hidden" name="group" id="<?=$_GET['id']?>">
+			<input type="hidden" name="module" id="<?=$_GET['module']?>">
+			<input type="hidden" name="action" id="add">
 			<input type="submit" name="update" value="Add Website">
 		</form>
 
