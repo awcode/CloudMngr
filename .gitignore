@@ -1,4 +1,4 @@
-﻿data/*
+data/
 !data/config.sample.php
 .*
 !.gitignore
