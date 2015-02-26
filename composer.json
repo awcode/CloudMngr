@@ -1,6 +1,16 @@
 {
     "name": "awcode/cloudmngr",
     "description": "A complete solution to launching and managing scaling/load balancing cloud hosting straight out of the box",
+    "keywords": ["package", "dependency", "autoload"],
+    "homepage": "http://cloudmngr.com/",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mark Walker",
+            "homepage": "http://awcode.com"
+        }
+    ],
     "require": {
     	"php": ">=5.3.0",
         "phpseclib/phpseclib": "0.3.10",
