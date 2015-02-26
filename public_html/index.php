@@ -38,16 +38,16 @@ else{$page="main";}
 
 
 	<?php 
-	if($_SESSION['admin'] != ""){include("../template/temp-top.php");}
+	if($_SESSION['admin'] != ""){include($CloudMngr->class_path.DIRECTORY_SEPARATOR."content".DIRECTORY_SEPARATOR."header.php");}
 	//[TODO] Clean path from XSS etc.
 	if($_GET['module']!=""){
 		$mod = $CloudMngr->module($_GET['module']);
 		$mod->getModulePage($page);
 	}else{
-		include($CloudMngr->class_path."/content/".$page.".php");
+		include($CloudMngr->class_path.DIRECTORY_SEPARATOR."content".DIRECTORY_SEPARATOR.$page.".php");
 	}
 
-	if($_SESSION['admin'] != ""){include("../template/temp-bott.php");}
+	if($_SESSION['admin'] != ""){include($CloudMngr->class_path.DIRECTORY_SEPARATOR."content".DIRECTORY_SEPARATOR."footer.php");}
 
 	?>
 

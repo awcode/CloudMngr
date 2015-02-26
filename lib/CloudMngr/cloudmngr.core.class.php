@@ -3,6 +3,7 @@
  *
  * CloudMngr Core Class
  */
+require_once('../vendor/autoload.php');
 
 class CloudMngr {
 	
@@ -13,17 +14,21 @@ class CloudMngr {
 	private $_group = null;
 	private $_instance = null;
 	private $_modules = array();
-	
+	protected $_display = null;
+		
 	public $class_path;
 	public $base_path;
 	
 	public $active_modules;
+	public $all_modules;
 	
 	protected $group_id;
 	protected $region_id;
 	protected $config;
 	protected $hooks = array();			//Individual Hooks array - add hooks to modules here.
 	protected $_hooks = array();		//Global hooks array, managed internally.
+	protected $menus = array();
+
 
 	function __construct($group_id="", $region_id=""){
 		$this->class_path = dirname(__FILE__);
@@ -43,8 +48,10 @@ class CloudMngr {
 			foreach($chk_modules as $module){
 				if (file_exists($this->class_path . DIRECTORY_SEPARATOR . "modules" . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . $module.'.php')){
 					if (!file_exists($this->class_path . DIRECTORY_SEPARATOR . "modules" . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . 'disable')){
-						$this->active_modules[] = $module;
+						$this->active_modules[] = $module;	
+						if(get_class($this) == "CloudMngrDisplay"){$this->menus = array_merge($this->menus, $this->module($module)->menus);}
 					}
+					$this->all_modules[] = $module;						
 				}
 			}
 		}
@@ -98,6 +105,14 @@ class CloudMngr {
 			$this->_region = new CloudMngrRegion($this->group_id, $this->region_id);
 		}
 		return $this->_region;
+	}
+	
+	function display(){	
+		if($this->_display == null){
+			include_once($this->class_path . DIRECTORY_SEPARATOR . 'cloudmngr.display.class.php');
+			$this->_display = new CloudMngrDisplay();
+		}
+		return $this->_display;
 	}
 	
 	function instance(){
@@ -166,5 +181,7 @@ class CloudMngr {
 		(!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
 		|| $_SERVER['SERVER_PORT'] == 443;
 	}
+
+
 }
 ?>

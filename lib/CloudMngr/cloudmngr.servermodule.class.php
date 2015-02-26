@@ -149,6 +149,7 @@ class CloudMngrServerModule extends CloudMngrBaseModule{
 	}
 
 	function terminate($instance_id){
+		$this->getData();
 		$this->runHooks("beforeTerminateServer", $this->module_name);
 		
 		$res = $this->instance()->terminateInstance($instance_id);

@@ -13,7 +13,6 @@ class CloudMngrInstanceAWS extends CloudMngr{
 	function __construct($group_id="", $region_id=""){
 		parent::__construct($group_id, $region_id);
 
-		require_once($this->class_path."/../AWS/aws-autoloader.php");
 		$this->credentials = new Credentials($this->config['aws_access_key_id'], $this->config['aws_secret_access_key']);
 		
 		$region = $this->region()->getRegion();

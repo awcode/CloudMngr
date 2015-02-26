@@ -6,11 +6,12 @@ foreach($group['regions'] as $index=>$id){
 	$regions_select .= "<option value='".$id."'>".$regions[$id]['name']."</option>";
 }
 
-?>					<div class="span6">
+?>					<div class="row-fluid">
+						<div class="span12">
                             <!-- block -->
                             <div class="block">
                                 <div class="navbar navbar-inner block-header">
-                                    <div class="muted pull-left"><?=$group['name']?> - <?=$this->getModuleType()?> - <?=$this->getDisplayName()?></div>
+                                    <div class="muted pull-left"><?=$this->getDisplayName()?></div>
                                     <div class="pull-right">
 					<span id="toggle<?=$this->getName()?>" style="display:none"><select id="launch<?=$this->getName()?>Region"><?=$regions_select?></select><input type="button" id="launch<?=$this->getName()?>Go" value="Go"></span>
 					<span class="badge badge-info"><a href="#" id="launch<?=$this->getName()?>">Launch</a></span>
@@ -57,6 +58,7 @@ if(!$cnt) echo("<tr><td colspan='5'>No ".$this->getDisplayName()." created</td><
                             </div>
                             <!-- /block -->
                         </div>
+                    </div>
 
 
 <script type="text/javascript">

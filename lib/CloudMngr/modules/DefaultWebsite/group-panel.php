@@ -2,11 +2,12 @@
 $group = $this->group()->getGroup();
 $this_arr = $this->getData();
 
-?>					<div class="span6">
+?>					<div class="row-fluid">
+						<div class="span12">
                             <!-- block -->
                             <div class="block">
                                 <div class="navbar navbar-inner block-header">
-                                    <div class="muted pull-left"><?=$group['name']?> - <?=$this->getModuleType()?> - <?=$this->getDisplayName()?></div>
+                                    <div class="muted pull-left"><?=$this->getDisplayName()?></div>
                                     <div class="pull-right">
                                     	<span class="badge badge-info"><a href="?module=<?=$this->getName()?>&page=add-new&id=<?=$this->group()->getId()?>" id="add<?=$this->getName()?>">Add</a></span>
                                     	<span class="badge badge-info"><a href="?module=<?=$this->getName()?>&page=edit-config&id=<?=$this->group()->getId()?>">Config</a></span>
@@ -26,8 +27,8 @@ $this_arr = $this->getData();
                                         <tbody>
 <?php
 $cnt = 0;
-if(count($this_arr['websites'][$this->module_display_name]) > 0){
-	foreach($this_arr['websites'][$this->module_display_name] as $web_key=>$web){
+if(count($this_arr['websites']) > 0){
+	foreach($this_arr['websites'] as $web_key=>$web){
 			$cnt++;
 ?>
                                             <tr>
@@ -48,6 +49,7 @@ if(!$cnt) echo("<tr><td colspan='5'>No ".$this->getDisplayName()." created</td><
                             </div>
                             <!-- /block -->
                         </div>
+                    </div>
 
 
 <script type="text/javascript">

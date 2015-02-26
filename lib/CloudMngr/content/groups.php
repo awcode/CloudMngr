@@ -21,9 +21,19 @@
  		    </div>
                     <div class="row-fluid">
 <?php
+	$regions = $CloudMngr->region()->getAllRegions();
+	
 	$groups = $CloudMngr->group()->getAllGroups();
 	foreach($groups as $key=>$group){
 	$odd +=1;
+	
+	
+	$region_cnt = 0;
+	foreach($regions as $key=>$region){
+		if(in_array($k, $group['regions'])){
+			$region_cnt ++;
+		}
+	}
 ?>
 
 
@@ -48,7 +58,7 @@
                                         <tbody>
                                             <tr>
                                                 <td>Regions</td>
-                                                <td>1</td>
+                                                <td><?=$region_cnt?></td>
                                                 <td>100%</td>
                                             </tr>
                                             <?php

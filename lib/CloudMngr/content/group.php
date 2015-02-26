@@ -27,7 +27,7 @@ foreach($group['regions'] as $index=>$id){
                             	</div>
                         	</div>
                     	</div>
- 		    </div>
+ 		    		</div>
                     <div class="row-fluid">
 
  						<div class="span12">
@@ -77,17 +77,55 @@ foreach($group['regions'] as $index=>$id){
                         </div>
                      </div>
                      <div class="row-fluid">
-					<?php
-					if($CloudMngr->arrFull($CloudMngr->active_modules)){
-						$cnt = 0;
-						foreach($CloudMngr->active_modules as $module){
-							$ob = $CloudMngr->module($module);
-							$ob->displayGroupPanel();
-							$cnt ++;
-							if($cnt == 2){$cnt = 0; echo('</div><div class="row-fluid">');}
-						}
-					} 
-					?>
+		                <div class="span6">	                
+		                 <div class="row-fluid">
+                            <div class="block">
+                                <div class="navbar navbar-inner block-header">
+                                    <div class="muted pull-left">Servers - <?=$group['name']?></div>
+								</div>
+							</div>
+						</div>       
+						<?php
+						$all_modules = $CloudMngr->active_modules;
+						if($CloudMngr->arrFull($all_modules)){
+							$cnt = 0;
+							foreach($all_modules as $k => $module){
+								$ob = $CloudMngr->module($module);
+								if($ob->getModuleType() == "Server"){
+									$ob->displayGroupPanel();
+									$cnt ++;
+									unset($all_modules[$k]);
+								}
+								//if($cnt == 2){$cnt = 0; echo('</div><div class="row-fluid">');}
+							}
+						} 
+						?>
+						</div>
+						<div class="span6">
+		                 <div class="row-fluid">
+                            <div class="block">
+                                <div class="navbar navbar-inner block-header">
+                                    <div class="muted pull-left">Websites - <?=$group['name']?></div>
+								</div>
+							</div>
+						</div>       
+						<?php
+						$all_modules = $CloudMngr->active_modules;
+						if($CloudMngr->arrFull($all_modules)){
+							$cnt = 0;
+							foreach($all_modules as $k => $module){
+								$ob = $CloudMngr->module($module);
+								if($ob->getModuleType() == "Website"){
+									$ob->displayGroupPanel();
+									$cnt ++;
+									//unset($all_modules[$k]);
+								}
+								//if($cnt == 2){$cnt = 0; echo('</div><div class="row-fluid">');}
+							}
+						} 
+						?>
+					
+						</div>
                     </div>
 <script src="assets/scripts.js"></script>
 

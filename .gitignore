@@ -1,7 +1,9 @@
-data/*
+﻿data/*
 !data/config.sample.php
 .*
 !.gitignore
 passwd
 Thumbs.db
 php.ini
+composer.phar
+vendor/

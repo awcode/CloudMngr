@@ -26,13 +26,15 @@ class CloudMngrWebsiteModule extends CloudMngrBaseModule{
 	
 	protected function _getCountByRegion($region_id=""){
 		$cnt = 0;
-		/*$region_id = (($region_id)?$region_id:$this->region_id);
+		$region_id = (($region_id)?$region_id:$this->region_id);
 		$groups = $this->group()->getAllGroups();
 		if(! $this->arrFull($groups)) return 0;
 		foreach($groups as $id => $group){
-			$data = $this->loadByGroup($id);	
-			if($this->arrFull($this->data_arr['regions'][$region_id]['instances'])) $cnt += count($this->data_arr['regions'][$region_id]['instances']);
-		}*/
+			$this->loadByGroup($id);
+			if(in_array($region_id, $group['regions'])){
+				if($this->arrFull($this->data_arr['websites'])) $cnt += count($this->data_arr['websites']);
+			}
+		}
 		return $cnt;
 	}
 	
@@ -110,9 +112,9 @@ class CloudMngrWebsiteModule extends CloudMngrBaseModule{
 		$append = "";
 		while(isset($this->data_arr['websites'][$web_key.$append])){$append +=1;}
 		$web_key .= $append;
-		$this->data_arr['websites'][$this->module_display_name][$web_key]['hostname'] = $config['hostname'];
-		$this->data_arr['websites'][$this->module_display_name][$web_key]['user'] = $config['user'];
-		$this->data_arr['websites'][$this->module_display_name][$web_key]['directory'] = $config['directory'];
+		$this->data_arr['websites'][$web_key]['hostname'] = $config['hostname'];
+		$this->data_arr['websites'][$web_key]['user'] = $config['user'];
+		$this->data_arr['websites'][$web_key]['directory'] = $config['directory'];
 		
 		$this->writeArray();
 		
@@ -130,7 +132,7 @@ class CloudMngrWebsiteModule extends CloudMngrBaseModule{
 	function remove($web_key){
 		$this->runHooks("beforeRemoveWebsite", $this->module_name);
 
-		unset($this->data_arr['websites'][$this->module_display_name][$web_key]);
+		unset($this->data_arr['websites'][$web_key]);
 		$this->writeArray();
 		
 		echo($this->module_display_name." Deleted");

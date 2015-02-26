@@ -21,9 +21,18 @@
  		    </div>
                     <div class="row-fluid">
 <?
+	$groups = $CloudMngr->group()->getAllGroups();
+	
 	$regions = $CloudMngr->region()->getAllRegions();
 	foreach($regions as $key=>$region){
 	$odd +=1;
+	$group_arr = array();
+	$group_cnt = 0;
+	foreach($groups as $k=>$group){
+		if(in_array($key, $group['regions'])){
+			$group_arr[] = "<a href='/?page=group&id=".$k."'>".$group['name']."</a> ";
+		}
+	}
 ?>
 
 
@@ -48,7 +57,7 @@
                                         <tbody>
                                             <tr>
                                                 <td>Groups</td>
-                                                <td>1</td>
+                                                <td><?=count($group_arr)." ".implode(", ",$group_arr)?></td>
                                                 <td>100%</td>
                                             </tr>
 						                	<?php
