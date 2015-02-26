@@ -22,8 +22,11 @@ Now using composer for dependencies
 
 Version History
 ---------------
-Feb 26th 2015- version 0.0.2 - base platform ready, fully modular and now using composer (still lacking core functionality)
-Oct 23rd 2014- version 0.0.1 - rough, raw and incomplete - not yet production ready (or fully functional)!
+*Feb 26th 2015- version 0.0.2*
+Base platform ready, fully modular and now using composer (still lacking core functionality)
+
+*Oct 23rd 2014- version 0.0.1*
+Rough, raw and incomplete - not yet production ready (or fully functional)!
 
 Developers
 ----------
